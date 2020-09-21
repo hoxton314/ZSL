@@ -37,7 +37,7 @@
     <ul>
         <li><a class="active" href="https://hoxton314.github.io/ZSL/">Home</a></li>
         <li><a href="#news">Mendela</a></li>
-        <li><a href="https://hoxton314.github.io/ZSL/Stefa%C5%84czyk/Lekcja1/index.html">Stefańczyk</a></li>
+        <li><a href="https://hoxton314.github.io/ZSL/Stefa%C5%84czyk/home.html">Stefańczyk</a></li>
         <li><a href="#about">Jakubiński</a></li>
     </ul>
 </body>
