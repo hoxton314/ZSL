@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=libs/jq.js></script>
+
+    <script>
+        console.log(new Date().getMilliseconds())
+
+        $(document).ready(function () {
+
+            console.log(new Date().getMilliseconds())
+            var co = true;
+            console.log(co)
+            $("#bt1").on("click", function () {
+                if (co) {
+
+                    co = false;
+                    console.log(co)
+
+                    $("#div1").on("mouseover", function () {
+                        $("#div1")
+                            .css("width", 400)
+                            .css("height", 400)
+                            .css("background", "gray")
+                            .html("<b>tekst</b>")
+
+                    })
+
+                    $("#div1").on("mouseout", function () {
+                        $("#div1")
+                            .css("width", 400)
+                            .css("height", 400)
+                            .css("background", "black")
+                            .html("<b>tekst</b>")
+
+                    })
+
+                }
+                else {
+                    co = true;
+                    console.log(co)
+                    $("#div1").off("mouseover")
+
+                    $("#div1").off("mouseout")
+
+                }
+
+
+            })
+
+
+        })
+
+    </script>
+
+    <style>
+        #div1 {
+            width: 400px;
+            height: 400px;
+            background: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Jquery zdarzenia</h1>
+    <button id="bt1">dodaj / usuń listenery</button>
+    <div id="div1"></div>
+</body>
+
+</html>

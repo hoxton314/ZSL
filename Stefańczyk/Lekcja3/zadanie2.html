@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=libs/jq.js></script>
+
+    <script>
+        console.log(new Date().getMilliseconds())
+
+        $(document).ready(function () {
+            var counter = 0;
+
+
+            $("#bt1").on("click", function () {
+                for (l = 0; l < 5; l++) {
+                    for (i = 0; i < 5; i++) {
+                        counter++
+                        $("#plansza").append("<div class='kwadrat' id='kwadrat" + counter + "' style='position: absolute; left: " + i * 100 + "px; top: " + l * 100 + "px;'> </div>")
+
+                    }
+
+                }
+                $(".kwadrat").on("click", function () {
+                    console.log($(this).css('background-color'))
+
+                    if ($(this).css('background-color') == "rgba(0, 0, 0, 0)") {
+                        $(this)
+                            .css("background-color", "rgba(0, 0, 255)")
+                    } else {
+                        $(this)
+                            .css("background-color", "rgba(0, 0, 0, 0)")
+                    }
+
+                })
+            })
+
+
+
+
+
+
+
+
+            $("#bt3").on("click", function () {
+                location.reload();
+            })
+
+        })
+    </script>
+    <style>
+        #plansza {
+
+            position: absolute;
+            left: 250px;
+            top: 100px;
+
+
+        }
+
+        .kwadrat {
+            width: 100px;
+            height: 100px;
+            border-style: solid;
+            border-width: 3px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="bt1">Start Game</button>
+    <button id="bt2">Next Move</button>
+    <button id="bt3">Reset Game</button>
+    <div id="plansza">
+
+    </div>
+</body>
+
+</html>

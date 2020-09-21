@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>--2.2--</title>
+    <script>
+
+        var str = prompt("Podaj elementy tablicy", "ab 1 23 c d 4 5 6e f g etwrt w wer");
+        console.log("Początkowa tablica: " + str);
+
+        var n = prompt("O ile miejsc przesunac?", "5");
+        var kierunek = prompt("W lewo czy w prawo? (left/right)", "left")
+        if (kierunek == "left") {
+            n = -n;
+        }
+
+        tablica = str.split(" ");
+        var i;
+        //table.unshift("Lemon","Pineapple");
+        //table.pop();
+        if (n > 0) {
+            for (i = n; i > 0; i--) {
+                tablica.unshift(tablica[tablica.length - 1]);
+                tablica.pop();
+
+
+            }
+
+            //fruits.push("Kiwi");
+            //fruits.shift(); 
+        } else {
+            n = -n;
+            for (i = 0; i < n; i++) {
+                tablica.push(tablica[0]);
+                tablica.shift();
+
+            }
+
+        }
+        console.log("tablica po przesunięciu")
+        console.log(tablica)
+
+        document.write("Początkowa tablica: " + str + "</br");
+        document.write("tablica po przesunięciu")
+        document.write(tablica)
+
+    </script>
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>

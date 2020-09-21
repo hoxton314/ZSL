@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>--2.1--</title>
+    <script>
+
+        var a = prompt("Podaj zdanie", "Podaj zdanie");
+        console.log(a)
+        var i = a.length;
+        console.log(i)
+
+        for (n = 0; n <= i; n++) {
+            if (a.charAt(n) == "a") {
+                document.write("<b><font style='color: red'>a</font></b>")
+            }
+            else if (a.charAt(n) == "ą") {
+                document.write("<b><font style='color: red'>ą</font></b>")
+            }
+            else if (a.charAt(n) == "e") {
+                document.write("<b><font style='color: red'>e</font></b>")
+            }
+            else if (a.charAt(n) == "ę") {
+                document.write("<b><font style='color: red'>ę</font></b>")
+            }
+            else if (a.charAt(n) == "i") {
+                document.write("<b><font style='color: red'>i</font></b>")
+            }
+            else if (a.charAt(n) == "o") {
+                document.write("<b><font style='color: red'>o</font></b>")
+            }
+            else if (a.charAt(n) == "u") {
+                document.write("<b><font style='color: red'>u</font></b>")
+            }
+            else if (a.charAt(n) == "y") {
+                document.write("<b><font style='color: red'>y</font></b>")
+            }
+            else {
+                document.write(a.charAt(n))
+            }
+
+
+        }
+
+        //var b = a.replace(/a/g, "<b><font style='color: red'>a</font></b>");
+
+        //ą, e, ę, i, o, u, y.
+        //document.write(b)
+    </script>
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>

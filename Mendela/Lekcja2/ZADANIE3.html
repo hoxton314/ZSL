@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>--2.3--</title>
+    <script>
+
+        var str = prompt("Podaj zdanie", "Tomasz Hajto, przejechał babe na pasach i nie poniósł żadnej odpowiedzialności.");
+        console.log("string: " + str);
+        var n = prompt("Jakiej frazy szukasz?", "Hajto");
+        tablica = str.split(" ");
+        console.log(tablica)
+
+        for (i = 0; i < tablica.length; i++) {
+            str = tablica[i]
+            if (str[str.length - 1] == "," || str[str.length - 1] == ".") {
+                console.log(str.substring(0, str.length - 1))
+                console.log(n)
+                if ((str.substring(0, str.length - 1)).toUpperCase() == n.toUpperCase()) {
+
+                    document.write('<font style="text-decoration: underline">' + str.substring(0, str.length - 1) + '</font>')
+                    document.write(str.substring(str.length - 1) + " ")
+                } else {
+                    document.write(tablica[i] + " ")
+                }
+
+            }
+            else if (str.toUpperCase() == n.toUpperCase()) {
+                document.write('<font style="text-decoration: underline">' + tablica[i] + ' </font>')
+            }
+            else {
+                document.write(tablica[i] + " ")
+            }
+
+        }
+
+
+        //var b = a.replace(/a/g, "<b><font style='color: red'>a</font></b>");
+
+        //ą, e, ę, i, o, u, y.
+        //document.write(b)
+    </script>
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>

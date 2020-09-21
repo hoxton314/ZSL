@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=libs/jq.js></script>
+
+    <script>
+        console.log(new Date().getMilliseconds())
+
+        $(document).ready(function () {
+
+
+            $("#bt1").on("click", function () {
+
+                var x = $("#selector").val()
+                console.log(x)
+                var conf;
+                for (i = 0; i <= x; i++) {
+                    var bt = $("<button class='lista' id='lista" + i + "'>" + i + " </button> </br>")
+                    $("#menu").append(bt)
+
+                    bt.on("click", function () {
+                        console.log($(this))
+                        conf = confirm("Czy chcesz usunąć?");
+                        console.log(conf)
+                        if (conf) {
+                            $(this).remove()
+                        }
+                    })
+
+                }
+
+            })
+
+            $("#bt2").on("click", function () {
+                $("#menu").empty()
+            })
+
+
+
+
+
+
+        })
+
+
+
+    </script>
+    <style>
+        .lista {
+            background-color: blue;
+            width: 400px;
+            padding: 20px;
+            margin: 10px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="width:200px;">
+        <select id="selector">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+
+        </select>
+    </div>
+    <button id="bt1"> Dodaj menu</button>
+    <button id="bt2"> Usuń menu </button>
+
+    <div id="menu">
+
+    </div>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>--2.3--</title>
+    <script>
+
+        var str = prompt("Podaj zdanie", "aaaa Lorem ipsum j jj g g bb dolor a ccc f f f sit amet, bb consectetur. Lorem ccc ipsum dolor sit aaaa a ccc amet, consectetur. Lorem a ipsum dolor a sit amet, consectetur. Lorem ccc aaaa ipsum bb a dolor sit amet, consectetur. Lorem bb sit amet, consectetur. Lorem ipsum dolor consectetur. Lorem ipsum dolor sit amet, consectetur. dolor sit amet, consectetur. ");
+        console.log("string: " + str);
+        var tablica = str.split(" ");
+        console.log(tablica)
+        var helpstr;
+        var word = [];
+        var count = [];
+        var test;
+        for (i = tablica.length; i > 0; i--) {
+
+            helpstr = tablica[i - 1];
+            if (helpstr[helpstr.length - 1] == "," || helpstr[helpstr.length - 1] == ".") {
+                tablica[i - 1] = helpstr.substring(0, helpstr.length - 1);
+            }
+            tablica[i - 1] = tablica[i - 1].toLowerCase()
+        }
+        console.log(tablica)
+
+
+
+
+
+        for (i = 0; i < tablica.length; i++) {
+            helpstr = tablica[i]
+            console.log(helpstr)
+            test = 0;
+            for (l = 0; l < word.length; l++) {
+
+                if (word[l] == tablica[i]) {
+                    console.log(word[l] + "==" + tablica[i])
+
+                } else {
+                    test = test + 1;
+                    console.log("test" + test)
+                }
+            }
+
+            if (test == word.length) {
+                console.log(test + "==" + word.length)
+                word[word.length] = tablica[i]
+                console.log("word[word.length - 1]: " + word[word.length - 1])
+            }
+
+
+        }
+
+        for (l = 0; l < word.length; l++) {
+            count[l] = 0;
+        }
+
+        console.log(count)
+
+        for (l = 0; l < word.length; l++) {
+
+            for (i = 0; i < tablica.length; i++) {
+                if (tablica[i] == word[l]) {
+                    count[l] = count[l] + 1
+                }
+
+            }
+        }
+
+        word.splice(word.length - 1, 1);
+        count.splice(count.length - 1, 1);
+
+
+
+        var out = []
+
+        for (i = 0; i < count.length; i++) {
+            out[i] = count[i] + ' ' + word[i]
+        }
+
+        function customSort(a, b) {
+            return a.substring(0, a.indexOf(' ')) - b.substring(0, b.indexOf(' '))
+        }
+
+        out.sort(customSort);
+
+
+
+
+
+
+
+
+        console.log(word)
+        console.log(count)
+
+        console.log(out)
+        var outreversed = [];
+        l = 0;
+        for (i = out.length - 1; i >= 0; i--) {
+            outreversed[i] = out[l]
+            l = l + 1
+        }
+        console.log("wynik")
+        console.log(outreversed)
+
+
+
+        function getRandom(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        var color;
+        var colorchg = 0;
+
+        document.write("Ip.  Słowo </br>")
+
+        for (i = 0; i < outreversed.length; i++) {
+
+            if (colorchg % 5 == 0) {
+                color = "rgba(" + getRandom(0, 255) + ", " + getRandom(0, 255) + ", " + getRandom(0, 255) + ")"
+            }
+            colorchg++
+            console.log(color)
+
+            console.log("<font style='color:" + color + "'>" + outreversed[i] + "</font> </br>")
+            document.write("<font style='color:" + color + "'>" + outreversed[i] + "</font> </br>")
+
+        }
+
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>

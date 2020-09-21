@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+
+    <script>
+        document.write("Witaj JavaScript <br />");
+
+        document.write("- jedna pod drugą liczby z zakresu: <-111;111> <br />");
+        for (i = -111; i < 112; i++) {
+            document.write(i + "<br />");
+
+        }
+        document.write("<br />");
+        document.write("-----------------------------");
+        document.write("<br />");
+        document.write("<br />");
+
+
+        document.write("- malejąco co trzecią liczbę (oddzielone spacjami) z zakresu: (0;50>  <br />");
+        for (i = 50; i >= 0; i = i - 3) {
+            document.write(i + "\n");
+
+        }
+
+        document.write("<br />");
+        document.write("-----------------------------");
+        document.write("<br />");
+        document.write("<br />");
+
+
+        document.write("- malejąco liczby z zakresu: <10;50> \ (20;40) <br />");
+        for (i = 50; i > 9; i--) {
+            if (i < 40 && i > 20) { continue; }
+            document.write(i + "\n");
+        }
+
+        for (i = -30; i < 40; i++) {
+            if (i < 14 && i > 5 || i % 2 == 1 || i % 2 == -1) { continue; }
+            console.log(i + "\n");
+        }
+        console.log("----------------------------------------")
+        for (i = -20; i < 40; i++) {
+            if (i < 12 && i > 3 || i % 2 == 0 || i % 2 == -0) { continue; }
+            console.log(i + "\n");
+        }
+        console.log("----------------------------------------")
+        for (i = -100; i < 41; i++) {
+            if (i < 12 && i > -50 || i % 3 != 0 || i % 3 != 0) { continue; }
+            console.log(i + "\n");
+        }
+
+        console.log("fsagfg")
+
+
+        document.write("<br />");
+        document.write("-----------------------------");
+        document.write("<br />");
+        document.write("<br />");
+    </script>
+
+
+
+
+    <script>
+        x = "x";
+        var a = prompt("Please enter number:", 6);
+        document.write("a)");
+        document.write("<br />");
+        X = x.repeat(a);
+        document.write(X)
+
+        document.write("<br />");
+        document.write("<br />");
+        document.write("b)");
+        document.write("<br />")
+
+
+        if (a == 1) {
+            document.write("x")
+        }
+
+        if (a > 1) {
+            space = '&nbsp;'
+            spacex = 'x&nbsp;'
+            X = spacex.repeat(a - 1) + "x";
+            row = "x" + space.repeat(parseInt(a, 10) * 2 - 3) + "x";
+            if (a > 1) {
+                document.write(X + "<br />")
+                for (i = a - 2; i > 0; i--) {
+                    document.write(row + "<br />")
+
+                }
+                document.write(X + "<br />")
+            }
+
+        }
+        document.write("<br />")
+        document.write("<br />")
+        document.write("c)");
+        document.write("<br />")
+        if (a > 1) {
+            var brick = 1;
+            var usuwacz = 0;
+
+            for (i = a * 2; i > 0; i--) {
+                if (i % 2 != 0) {
+                    document.write(space.repeat(a - usuwacz) + "x".repeat(brick - 1) + space.repeat(a - usuwacz) + "<br />")
+                    usuwacz = usuwacz + 1;
+                }
+                brick = brick + 1;
+            }
+        }
+        if (a == 1) { document.write("x") }
+        document.write("<br />")
+        document.write("<br />")
+        document.write("d)");
+        document.write("<br />")
+        if (a > 1) {
+            var liczby = [];
+            for (i = 0; i <= a; i++) {
+                liczby[i] = i + 1;
+                for (l = 0; l < i; l++) {
+                    document.write(liczby[l])
+                }
+                document.write("<br />")
+            }
+        }
+        if (a == 1) { document.write(a) }
+        document.write("<br />")
+        document.write("<br />")
+        document.write("e)");
+        document.write("<br />")
+        if (a > 1) {
+            for (i = 0; i <= a; i++) {
+                liczby[i] = i + 1;
+                for (l = 0; l < i; l++) {
+                    if (l == 0) {
+                        document.write(space.repeat(a - i) + liczby[l])
+                    }
+                    else {
+                        document.write(liczby[l])
+                    }
+                }
+                document.write("<br />")
+            }
+        }
+        if (a == 1) { document.write(a) }
+        document.write("<br />")
+        document.write("<br />")
+        document.write("f) silnia podanej liczby:");
+        document.write("<br />")
+        var silnia = 1;
+        for (i = 1; i <= a; i++) {
+            silnia = silnia * i
+        }
+        document.write(silnia)
+
+        document.write("<br />")
+        document.write("<br />")
+        document.write("g) sumę liczb nieparzystych w zakresie 0 do podanej lczby");
+        document.write("<br />")
+
+        var niepar = 0;
+        for (i = 0; i <= a; i++) {
+            if (i % 2 != 0) {
+                niepar = niepar + i;
+            }
+
+        }
+        document.write(niepar)
+        document.write("<br />")
+        document.write("<br />")
+        document.write("h) w oknie dialogowym informację czy podana liczba jest pierwsza");
+        document.write("<br />")
+        if (a > 1) {
+            var test = 0;
+            for (i = 2; i < a; i++) {
+                if (a % i != 0) {
+                    test = 1
+                }
+
+            }
+            if (test == 0) {
+                document.write("liczba " + a + " jest pierwsza")
+            } else {
+                document.write("liczba " + a + " NIE jest pierwsza")
+            }
+        }
+        if (a == 1 || a == 0) {
+            document.write("liczba " + a + " NIE jest pierwsza (specjalny przypadek 0 i 1)")
+        }
+        document.write("<br />")
+        document.write("<br />")
+        document.write("i) w tabelece html'owej tabliczkę mnożenia wraz z nagłówkami, zachowaj kolorystykę (przekątna nagłówki, 'połówki') i pozbądź się 0 w lewym górnym rogu przykładowo (sama tabliczka bez napisu)");
+        document.write("<br />")
+
+        document.write('<table border="1">')
+
+
+        var rowcount;
+
+        for (rowcount = 0; rowcount <= a; rowcount++) {
+
+            if (rowcount == 0) {
+                document.write('<tr>')
+
+                for (i = 0; i <= a; i++) {
+                    if (i == 0) {
+                        document.write('<th >')
+                        document.write(" ")
+                        document.write("</th>")
+                    } else {
+                        document.write('<th style=" background-color:blue; color:white;">')
+                        document.write(i)
+                        document.write("</th>")
+                    }
+                }
+                document.write("</tr>")
+            } else {
+
+                document.write("<tr>")
+
+                for (i = 0; i <= a; i++) {
+                    if (i == 0) {
+                        document.write('<th style=" background-color:blue;color:white;">')
+                        document.write(rowcount)
+                        document.write("</th>")
+                    } else {
+                        if (rowcount == i) {
+                            document.write('<th>')
+                            document.write(rowcount * i)
+                            document.write("</th>")
+                        } else {
+                            document.write('<th style=" background-color:yellow">')
+                            document.write(rowcount * i)
+                            document.write("</th>")
+                        }
+
+                    }
+                }
+
+                document.write("</tr>")
+            }
+
+        }
+        document.write("</table>")
+
+        document.write("<br />")
+        document.write("<br />")
+        document.write("<br />")
+    </script>
+
+    <script>
+        var rok;
+        var miesiac;
+        var dzien;
+        var sex;
+        var miesiace = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"]
+        var pesel = prompt("Podaj pesel:", "02230109290");
+
+        if (pesel.length != 11) {
+            document.write("Podany PESEL jest błędny")
+        } else {
+            var test = 9 * parseInt(pesel[0], 10) + 7 * parseInt(pesel[1], 10) + 3 * parseInt(pesel[2], 10) + 1 * parseInt(pesel[3], 10) + 9 * parseInt(pesel[4], 10) + 7 * parseInt(pesel[5], 10) + 3 * parseInt(pesel[6], 10) + 1 * parseInt(pesel[7], 10) + 9 * parseInt(pesel[8], 10) + 7 * parseInt(pesel[9], 10)
+
+            console.log(test.toString(10))
+            var last = test.toString(10)
+            last = last.charAt(last.length - 1)
+            console.log(last)
+        }
+
+        if (parseInt(parseInt(last, 10)) != parseInt(pesel[10], 10)) {
+            document.write("Podany PESEL jest błędny")
+        } else {
+            //ustalanie roku urodzenia
+            if (pesel[2] == 8 || pesel[2] == 9) {
+                rok = "18"
+            } else if (pesel[2] == 0 || pesel[2] == 1) {
+                rok = "19"
+            } else if (pesel[2] == 2 || pesel[2] == 3) {
+                rok = "20"
+            } else if (pesel[2] == 4 || pesel[2] == 5) {
+                rok = "21"
+            } else if (pesel[2] == 6 || pesel[2] == 7) {
+                rok = "22"
+            }
+            rok = rok + pesel[0] + pesel[1]
+
+            //ustalanie dnia urodzenia
+            if (pesel[4] = "0") {
+                dzien = pesel[5]
+            } else {
+                dzien = pesel[4] + pesel[5]
+            }
+
+            //ustalanie miesiąca urodzenia
+            if (pesel[2] % 2 == 0) {
+                miesiac = miesiace[parseInt(pesel[3], 10) - 1]
+            } else {
+                miesiac = miesiace[parseInt(pesel[3], 10) + 9]
+            }
+            //ustalanie płci
+            if (pesel[9] % 2 == 0) {
+                sex = "Kobieta"
+            } else {
+                sex = "Mężczyzna"
+            }
+            //wynik	   	   	   	   	   
+            document.write("Data urodzenia:" + dzien + " " + miesiac + " " + rok + "</br>")
+            document.write("Płeć:" + sex + "</br>")
+        }
+
+
+
+    </script>
+
+    <title>--1.1--</title>
+</head>
+
+<body>
+
+</body>
+
+</html>

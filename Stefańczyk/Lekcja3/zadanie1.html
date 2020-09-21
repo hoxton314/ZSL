@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=libs/jq.js></script>
+
+    <script>
+        console.log(new Date().getMilliseconds())
+
+        $(document).ready(function () {
+            var lps = ["lp", "cena", "produkt"];
+            var ceny = ["5,60", "3,23", "7,45", "10,00", "3,20"];
+            var produkty = ["chleb", "mąka", "masło", "kefir", "dżem"];
+            var value;
+            var td = $("<td>" + value + "</td>");
+            var suma = 0;
+
+            $("#tabela").append("<tr>")
+            for (i = 0; i < lps.length; i++) {
+                value = lps[i];
+                td = $("<td>" + value + "</td>");
+                $("#tabela").append(td)
+                console.log(lps[i]);
+            }
+            $("#tabela").append("</tr>")
+
+
+            for (i = 0; i < ceny.length; i++) {
+                $("#tabela").append("<tr>")
+
+                value = i;
+                td = $("<td>" + value + "</td>");
+                $("#tabela").append(td)
+                value = ceny[i];
+                td = $("<td>" + value + "</td>");
+                $("#tabela").append(td)
+                value = produkty[i];
+                td = $("<td>" + value + "</td>");
+                $("#tabela").append(td)
+
+                $("#tabela").append("</tr>")
+            }
+
+            for (i = 0; i < ceny.length; i++) {
+                ceny[i] = ceny[i].replace(",", ".");
+                console.log(ceny[i])
+                suma = suma + parseFloat(ceny[i])
+                console.log(suma)
+            }
+
+
+            $("#tabela").append("<tr>")
+            $("#tabela").append("<td> suma: </td>");
+            $("#tabela").append("<td colspan='2'>" + suma + "</td>");
+            $("#tabela").append("</tr>")
+
+        })
+
+
+//var td = $("<td>") // komórka tabeli
+//var tr = $("<tr>") // wiersz tabeli
+
+
+    </script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <table id="tabela" border="1">
+
+
+    </table>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=libs/jq.js></script>
+
+    <script>
+        console.log(new Date().getMilliseconds())
+
+        $(document).ready(function () {
+
+            console.log(new Date().getMilliseconds())
+            var co = 0;
+            console.log(co)
+            $("#div1")
+                .css("width", 400)
+                .css("height", 400)
+                .css("background", "green")
+                .html(co)
+
+
+            $("#bt1").on("click", function () {
+
+                co = co + 1;
+                console.log(co)
+                if (co % 2 == 0) {
+                    $("#div1")
+                        .css("width", 400)
+                        .css("height", 400)
+                        .css("background", "green")
+                        .html(co)
+                }
+                else {
+                    $("#div1")
+                        .css("width", 400)
+                        .css("height", 400)
+                        .css("background", "red")
+                        .html(co)
+                }
+            })
+
+
+        })
+
+
+
+
+
+
+    </script>
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <h1>Jquery zdarzenia</h1>
+    <button id="bt1">+1</button>
+    <div id="div1"></div>
+</body>
+
+</html>

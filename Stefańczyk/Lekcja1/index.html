@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=libs/jq.js></script>
+
+    <script>
+        console.log(new Date().getMilliseconds())
+
+        $(document).ready(function () {
+
+            console.log(new Date().getMilliseconds())
+
+
+            $("#bt1").on("click", function () {
+                alert("ok")
+            })
+            $("#bt2").on("click", function () {
+                var co = confirm("ok")
+                console.log(co)
+                if (co) {
+                    console.log("AAAA")
+                }
+                else {
+                    console.log("BBB")
+                }
+            })
+
+            $("#bt3").on("click", function () {
+                var co = prompt("podaj wiek:")
+                if (co) {
+                    alert(co)
+                }
+                else {
+                    alert("podaj wiek")
+                }
+            })
+
+            $("#bt4").on("click", function () {
+                $("#div1")
+                    .css("width", 200)
+                    .css("height", 200)
+                    .css("background", "red")
+                    .html("<b>test</b>")
+            })
+
+            $("#bt5").on("click", function () {
+                $("#bt4").off("click")
+            })
+
+
+        })
+
+
+
+    </script>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="bt1">pokaż alert</button>
+    <button id="bt2">pokaż confirm</button>
+    <button id="bt3">pokaż prompt</button>
+    <button id="bt4">zmień css'a w div'ie</button>
+    <button id="bt5">anuluj działanie buttona</button>
+    <div id="div1"></div>
+
+</body>
+
+</html>
