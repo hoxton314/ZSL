@@ -12,24 +12,40 @@
 
         $(document).ready(function () {
             var counter = 0;
-
+            var square = [null,]
 
             $("#bt1").on("click", function () {
                 for (l = 0; l < 5; l++) {
                     for (i = 0; i < 5; i++) {
                         counter++
-                        $("#plansza").append("<div class='kwadrat' id='kwadrat" + counter + "' style='position: absolute; left: " + i * 100 + "px; top: " + l * 100 + "px;'> </div>")
+                        $("#plansza").append("<div class='kwadrat' id='kwadrat_" + counter + "' style='position: absolute; left: " + i * 100 + "px; top: " + l * 100 + "px;'> </div>")
+                        var coordinates = { x: i + 1, y: l + 1, color1: 0, color2: 0 };
+                        square.push(coordinates)
 
                     }
 
                 }
+                console.log(square)
                 $(".kwadrat").on("click", function () {
-                    console.log($(this).css('background-color'))
+                    console.log($(this).attr("id"))
+                    str = $(this).attr("id")
+                    if (str[9] == null) {
+                        str = (str[8])
+                    } else {
+                        str = (str[8] + "" + str[9])
+                    }
 
                     if ($(this).css('background-color') == "rgba(0, 0, 0, 0)") {
+                        square[str].color1 = 1;
+                        square[str].color2 = 1;
+                        console.log(square)
                         $(this)
                             .css("background-color", "rgba(0, 0, 255)")
+
                     } else {
+                        square[str].color1 = 0;
+                        square[str].color2 = 0;
+                        console.log(square)
                         $(this)
                             .css("background-color", "rgba(0, 0, 0, 0)")
                     }
@@ -37,9 +53,50 @@
                 })
             })
 
+            var p1pos = { x: 0, y: 0 };
+            var p2pos = { x: 0, y: 0 };
+            $("#bt2").on("click", function () {
+
+                //------------------------player1
+                var check = 1;
+                while (check > 0) {
+                    if (square[check].color1 == 1) {
+                        square[check].color1 = 0;
+                        p1pos = { x: square[check].x, y: square[check].y }
+                        check = 0
+                    } else {
+                        check++
+                    }
+                }
+                console.log(p1pos)
+                $("#plansza").append($("#player1"))
+                $("#player1")
+                    .css("left", (p1pos.x - 1) * 100 + "px")
+                    .css("top", (p1pos.y - 1) * 100 + "px")
+
+                //------------------------player2
+                var check = 25;
+                while (check > 0) {
+                    if (square[check].color2 == 1) {
+                        square[check].color2 = 0;
+                        p2pos = { x: square[check].x, y: square[check].y }
+                        check = 0
+                    } else {
+                        check--
+                    }
+                }
+                console.log(p2pos)
+                $("#plansza").append($("#player2"))
+                $("#player2")
+                    .css("left", (p2pos.x - 1) * 100 + "px")
+                    .css("top", (p2pos.y - 1) * 100 + "px")
 
 
 
+
+
+
+            })
 
 
 
@@ -51,6 +108,26 @@
         })
     </script>
     <style>
+        #player1 {
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+            background-color: green;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+
+        #player2 {
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            position: absolute;
+            left: 100px;
+            top: 200px;
+        }
+
         #plansza {
 
             position: absolute;
@@ -75,6 +152,12 @@
     <button id="bt1">Start Game</button>
     <button id="bt2">Next Move</button>
     <button id="bt3">Reset Game</button>
+    <div id="player1">
+
+    </div>
+    <div id="player2">
+
+    </div>
     <div id="plansza">
 
     </div>

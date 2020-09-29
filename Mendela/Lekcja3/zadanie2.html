@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>--3.2--</title>
+
+
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <input type="text" id="tekst">
+
+    <script>
+
+        var str = prompt("Podaj zdanie: ", "12345678901234567890");
+        var test = true;
+        while (test) {
+            if (str.length < 29) {
+                str = str + " "
+
+            } else {
+                test = false
+            }
+        }
+        tablica = str.split("");
+        console.log(tablica)
+
+        setInterval(function () {
+            tablica.push(tablica[0]);
+            tablica.shift();
+
+
+            str = tablica.join("")
+            document.getElementById("tekst").value = str;
+            console.log(str)
+        }, 250);
+
+
+
+    </script>
+
+</html>

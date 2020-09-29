@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>--3.3--</title>
+
+
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <textarea id="textarea" rows="25" cols="30">
+
+    </textarea>
+
+    <script>
+        var rows_textarea = 32;
+        tablica = []
+        document.getElementById("textarea").innerHTML = tablica.join('')
+
+        var counter = 0;
+        setInterval(function () {
+
+            if (counter == 0) { tablica.unshift("1p. Pierwszy punkt\n") }
+            if (counter == 1) { tablica.unshift("1p. Drugi punkt\n") }
+            if (counter == 2) { tablica.unshift("1p. Trzeci punkt\n") }
+            if (counter == 3) { tablica.unshift("1p. Czwarty punkt\n") }
+            if (counter == 4) { tablica.unshift("1p. Piąty punkt\n") }
+            if (counter == 5) { tablica.unshift("1p. Szósty punkt\n") }
+            if (counter == 6) { tablica.unshift("1p. Siódmy punkt\n") }
+
+
+            if (counter > 6) { tablica.unshift("\n") }
+
+            console.log(tablica)
+            textarea.innerHTML = tablica.join('')
+            counter++
+            if (counter == parseInt(rows_textarea) - 6) { tablica.pop() }
+            if (counter == parseInt(rows_textarea) - 5) { tablica.pop() }
+            if (counter == parseInt(rows_textarea) - 4) { tablica.pop() }
+            if (counter == parseInt(rows_textarea) - 3) { tablica.pop() }
+            if (counter == parseInt(rows_textarea) - 2) { tablica.pop() }
+            if (counter == parseInt(rows_textarea) - 1) { tablica.pop() }
+            if (counter == parseInt(rows_textarea)) { tablica.pop() }
+            if (counter == parseInt(rows_textarea)) {
+                tablica = []
+                document.getElementById("textarea").innerHTML = tablica.join('')
+                counter = 0
+            }
+
+        }, 150);
+    </script>
+
+</html>

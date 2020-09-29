@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=libs/jq.js></script>
+
+    <script>
+        console.log(new Date().getMilliseconds())
+        var a = 0;
+        $(document).ready(function () {
+            var p = 0;
+            var x = 0;
+
+            var posA;
+            var posB;
+            var vect;
+            var tab = []
+            start = false;
+            $("#plansza").on("click", function (e) {
+                $("#plansza").append("<div class='planet' style='position: absolute; left: " + (e.clientX - 50) + "px; top: " + (e.clientY - 50) + "px;'>" + x + "</div>")
+
+                tab.push({ x: (e.clientX - 50), y: (e.clientY - 50) })
+                //console.log(tab[x])
+
+                x++
+
+
+            })
+
+
+            $("#bt1").on("click", function () {
+
+                $("#rakieta")
+                    .css("left", tab[p].x)
+                    .css("top", tab[p].y)
+                if (p == (tab.length - 1)) {
+                    p = 0
+                } else {
+                    p++
+                }
+
+
+            })
+
+
+            $("#bt2").on("click", function () {
+                p = 0
+                setInterval(function () {
+
+                    $("#rakieta")
+                        .css("left", tab[p].x)
+                        .css("top", tab[p].y)
+                    if (p == (tab.length - 1)) {
+                        p = 0
+                    } else {
+                        p++
+                    }
+                }, 1000)
+
+            })
+
+            $("#bt3").on("click", function () {
+                p = 0
+                $("#rakieta")
+                    .css("left", tab[p].x)
+                    .css("top", tab[p].y)
+                if (start) {
+                    start = false;
+                    console.log("start: " + start)
+                } else {
+                    start = true;
+                    console.log("start: " + start)
+                }
+
+
+
+            })
+            function animateRocket() {
+                setInterval(function () {
+                    if (start) {
+
+                        posA = { x: tab[a].x, y: tab[a].y }
+                        if (a == (tab.length - 1)) {
+                            posB = { x: tab[(0)].x, y: tab[(0)].y }
+                        } else {
+                            posB = { x: tab[(parseInt(a) + 1)].x, y: tab[(parseInt(a) + 1)].y }
+                        }
+
+                        console.log("posA: " + " posB: ")
+                        console.log(posA)
+                        console.log(posB)
+                        vect = {
+                            x: (posB.x - posA.x),
+                            y: (posB.y - posA.y)
+                        }
+
+                        console.log("vect: ")
+                        console.log(vect)
+                        console.log("a:" + a)
+
+
+                        console.log($("#rakieta").css("left") + vect.x)
+                        var rakieta_left = ($("#rakieta").css("left"));
+                        var rakieta_top = ($("#rakieta").css("top"));
+
+                        var vect_left = parseInt(rakieta_left.substring(0, rakieta_left.length - 2)) + vect.x;
+                        var vect_top = parseInt(rakieta_top.substring(0, rakieta_top.length - 2)) + vect.y;
+
+
+                        $("#rakieta")
+                            .css("left", (vect_left + "px"))
+                            .css("top", (vect_top + "px"))
+                        // if (p == (tab.length - 1)) {
+                        //     p = 0
+                        // } else {
+                        //     p++
+                        //  }
+                        console.log("left: " + (vect_left + "px"))
+                        console.log("top: " + (vect_top + "px"))
+                    }
+
+                    if (a == (tab.length - 1)) {
+                        a = 0
+                        // start = false;
+                    } else {
+                        a++
+                    }
+
+                }, 1000)
+
+
+
+
+            }
+
+
+
+
+
+            animateRocket()
+
+
+
+        })
+    </script>
+    <style>
+        .planet {
+            height: 100px;
+            width: 100px;
+            background-image: url("planet.png");
+
+
+            text-align: center;
+            vertical-align: middle;
+            line-height: 100px;
+            color: white;
+            font-size: 40px;
+        }
+
+        #plansza {
+
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background-color: blueviolet;
+            height: 100%;
+            width: 90%;
+
+        }
+
+        #buttony {
+
+            position: absolute;
+            left: 90%;
+            top: 0px;
+            background-color: green;
+            height: 100%;
+            width: 10%;
+
+
+        }
+
+        .button {
+            margin-top: 25px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            padding: 10px;
+        }
+
+        #rakieta {
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            background-image: url("rocket.png");
+            height: 140px;
+            width: 25px;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div id="plansza">
+        <div id="rakieta"></div>
+    </div>
+    <div id="buttony">
+        <button class="button" id="bt1">Steps</button> </br>
+        <button class="button" id="bt2">Jumping</button> </br>
+        <button class="button" id="bt3">Fly</button> </br>
+        <input type="checkbox" id="checkbox" name="checkbox">
+        <label for="checkbox"> Kierunek lotu</label><br>
+    </div>
+
+
+</body>
+
+</html>

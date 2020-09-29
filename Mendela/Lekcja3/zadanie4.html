@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>--3.4--</title>
+
+
+    <style>
+        img {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="img.gif" />
+
+    <script>
+        var pic = document.images[0]
+        pic.style.width = "100px"
+        pic.style.height = "100px"
+        const r = 200
+
+        var stopien = 0
+
+        setInterval(function () {
+            pic.style.transform = `rotate(${(stopien * 60) + 90}deg)`
+
+            pic.style.top = r * (Math.sin(stopien) + 1.5) + "px"
+            pic.style.left = r * (Math.cos(stopien) + 2) + "px"
+
+            if (stopien >= 6) { stopien = 0 } else { stopien += 0.1 }
+        }, 50);
+
+    </script>
+</body>
+
+</html>
