@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=libs/jq.js></script>
+
+    <script>
+        console.log(new Date().getMilliseconds())
+
+        $(document).ready(function () {
+            var tab = [
+                { type: "komisariat 1 - dzielnica I", c1: "111111", c2: "f5aa00", start: 70 },
+                { type: "komisariat 2 - dzielnica II", c1: "333333", c2: "f5bb00", start: 60 },
+                { type: "komisariat 3 - dzielnice III i IV", c1: "555555", c2: "f5cc00", start: 50 },
+                { type: "komisariat 4 - dzielnice V, VI i VII", c1: "777777", c2: "f5dd00", start: 40 },
+                { type: "komisariat 5 - dzielnice VIII, IX, i XIII", c1: "999999", c2: "f5ee00", start: 50 },
+                { type: "komisariat 6 - dzielnice X, XI i XII", c1: "777777", c2: "f5dd00", start: 60 },
+                { type: "komisariat 7 - dzielnice XV, XVI i XVII", c1: "555555", c2: "f5cc00", start: 70 },
+                { type: "komisariat 8 - dzielnice XIV i XVIII", c1: "333333", c2: "f5bb00", start: 80 },
+            ]
+
+            var value;
+            var slider;
+            var td = $("<td>" + value + "</td>");
+            var suma = 0;
+            //tab5[2].b
+
+
+            $("#tabela").append("<tr>   <td style='width: 300px;'> komisariat </td><td  style='width: 50px;'> noc </td><td  style='width: 500px;'> dane o przestępczości </td><td  style='width: 50px;'> dzień </td>   </tr>")
+
+
+
+            for (k = 0; k < tab.length; k++) {
+                $("#tabela").append("<tr>")
+                for (i = 0; i < 4; i++) {
+                    if (i == 0) {
+                        value = tab[k].type
+                    }
+                    if (i == 1) {
+                        value = 100 - tab[k].start
+                    }
+                    if (i == 3) {
+                        value = tab[k].start
+                    }
+                    if (i != 2) {
+                        td = $("<td>" + value + "</td>");
+                        $("#tabela").append(td)
+                    }
+                    if (i == 2) {
+
+                        value = "<div class='slider' id='slider" + k + "'> </div>"
+                        td = $("<td>" + value + "</td>");
+                        $("#tabela").append(td)
+
+                        sliderdiv = "#slider" + k;
+                        value = "<div class='sliderclick' id='sliderc" + k + "'> </div>"
+                        td = $("<td>" + value + "</td>");
+                        $(sliderdiv).append(td)
+                        color = "#" + tab[k].c1
+                        $(sliderdiv)
+                            .css("background-color", color)
+
+
+                        slidercdiv = "#sliderc" + k
+                        slidercmove = (4 * tab[k].start) - 20 + "px";
+                        color = "#" + tab[k].c2
+                        $(slidercdiv)
+                            .css("left", slidercmove)
+                            .css("background-color", color)
+                    }
+
+                    console.log(tab[i]);
+                }
+                $("#tabela").append("</tr>")
+
+            }
+
+
+
+
+        })
+
+
+//var td = $("<td>") // komórka tabeli
+//var tr = $("<tr>") // wiersz tabeli
+
+
+    </script>
+    <style>
+        #tabela {
+            border: 1px dotted blue;
+        }
+
+        .slider {
+            height: 50px;
+            width: 400px;
+            background-color: black;
+        }
+
+        .sliderclick {
+            height: 40px;
+            width: 40px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="tabela">
+
+
+    </table>
+
+
+
+</body>
+
+</html>
