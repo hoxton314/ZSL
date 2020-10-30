@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click n Slide</title>
+
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        #panel {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #pic {
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+    <div id="panel">
+
+        <img id="pic" src="pic.jpg"><br>
+        Mieszanie sekwencyjne (widoczne przemieszczanie puzli): <input type="checkbox" value="1">
+        <div id="buttons"> <button onclick="klocki(3)" id="button3x3">3x3</button> <button onclick="klocki(4)"
+                id="button4x4">4x4</button> <button onclick="klocki(5)" id="button5x5">5x5</button> <button
+                onclick="klocki(6)" id="button6x6">6x6</button></div>
+
+
+
+    </div>
+
+
+
+    <script>
+
+
+        var solution = []
+
+        var check = 0
+
+        function pixelcalc(pixvar, num) {
+            pixvar = pixvar.slice(0, -2);
+            pixvar = parseInt(pixvar) + num
+            pixvar = pixvar + "px"
+            return pixvar
+        }
+
+
+        //0-top,1-left,2-right,3-bottom
+
+
+
+
+
+
+        function klocki(n) {
+
+            switch (n) {
+                case 3:
+                    bok = 240
+                    break;
+                case 4:
+                    bok = 180
+                    break;
+                case 5:
+                    bok = 144
+                    break;
+                case 6:
+                    bok = 120
+                    break;
+            }
+
+            if (check == 0) {
+
+                panel.innerHTML += "<div id='puzle'> </div>"
+
+                puzle.style.height = "720px"
+                puzle.style.width = "720px"
+                puzle.style.borderStyle = "solid"
+                puzle.style.borderWidth = "1px"
+                puzle.style.boxSizing = "border-box"
+                puzle.style.marginRight = "auto"
+                puzle.style.marginLeft = "auto"
+                //
+                document.getElementById("puzle").addEventListener("click", moving);
+                //
+                check = 1;
+            } else {
+                puzle.innerHTML = "";
+            }
+
+
+
+
+
+
+
+            console.log(n)
+
+            var tabcheck = []
+            tabcheck[0] = [];
+            tabcheck[1] = [];
+            tabcheck[2] = [];
+            tabcheck[3] = [];
+
+            counter = 0
+            for (l = 1; l < ((n * n) + 1); l++) {
+                counter = counter + 1
+                tabcheck[n - 3][counter] = { x: null, y: null, taken: false }
+            }
+
+
+            counter = 0
+            for (l = 1; l < (n + 1); l++) {
+                for (i = 1; i < (n + 1); i++) {
+
+                    counter = counter + 1
+                    puzle.style.position = "relative"
+                    puzle.innerHTML += "<div class='singlepiece' id='puzel" + counter + "' style='height:" + (720 / n) + "px; width:" + (720 / n) + "px; position:absolute; left: " + (720 / n) * (i - 1) + "px; top: " + (720 / n) * (l - 1) + "px;'> </div>"
+                    console.log("i: " + i + "   l: " + l)
+                    solution[counter] = { id: 'puzel' + counter, x: ((720 / n) * (i - 1)) + "px", y: ((720 / n) * (l - 1)) + "px" }
+
+                    var puzelid = document.getElementById("puzel" + counter)
+                    puzelid.style.backgroundImage = "url('pic.jpg')"
+                    puzelid.style.backgroundPosition = -(720 / n) * (i - 1) + "px " + -(720 / n) * (l - 1) + "px"
+                }
+            }
+
+            puzelgray = document.getElementById("puzel" + (n * n))
+            puzelgray.style.backgroundColor = "gray"
+            puzelgray.style.backgroundImage = ""
+
+
+            //getComputedStyle(puzelid).left
+            var koordynaty = []
+
+            i = n * n;
+            while (i > 0) {
+                puzelgray = document.getElementById("puzel" + (n * n))
+                puzelidtop = document.getElementById("puzel" + i)
+                if (pixelcalc(puzelgray.style.top, -bok) == puzelidtop.style.top && puzelgray.style.left == puzelidtop.style.left) {
+                    var TopOverGrayX = getComputedStyle(puzelidtop).left
+                    var TopOverGrayY = getComputedStyle(puzelidtop).top
+
+                    i = 0
+                } else {
+                    i = i - 1
+                }
+            }
+
+            i = n * n;
+            while (i > 0) {
+                puzelidleft = document.getElementById("puzel" + i)
+                if (puzelgray.style.top == puzelidleft.style.top && pixelcalc(puzelgray.style.left, -bok) == puzelidleft.style.left) {
+                    var LeftOverGrayX = getComputedStyle(puzelidleft).left
+                    var LeftOverGrayY = getComputedStyle(puzelidleft).top
+
+                    i = 0
+                } else {
+                    i = i - 1
+                }
+            }
+
+            i = n * n;
+            while (i > 0) {
+                puzelidright = document.getElementById("puzel" + i)
+                if (puzelgray.style.top == puzelidright.style.top && pixelcalc(puzelgray.style.left, +bok) == puzelidright.style.left) {
+                    var RightOverGrayX = getComputedStyle(puzelidright).left
+                    var RightOverGrayY = getComputedStyle(puzelidright).top
+
+                    i = 0
+                } else {
+                    i = i - 1
+                }
+            }
+
+            i = n * n;
+            while (i > 0) {
+                puzelidbottom = document.getElementById("puzel" + i)
+                if (pixelcalc(puzelgray.style.top, +bok) == puzelidbottom.style.top && puzelgray.style.left == puzelidbottom.style.left) {
+                    var BottomOverGrayX = getComputedStyle(puzelidbottom).left
+                    var BottomOverGrayY = getComputedStyle(puzelidbottom).top
+
+                    i = 0
+                } else {
+                    i = i - 1
+                }
+            }
+
+            koordynaty[0] = { pos: top, x: TopOverGrayX, y: TopOverGrayY }
+            koordynaty[1] = { pos: top, x: LeftOverGrayX, y: LeftOverGrayY }
+            koordynaty[2] = { pos: top, x: RightOverGrayX, y: RightOverGrayY }
+            koordynaty[3] = { pos: top, x: BottomOverGrayX, y: BottomOverGrayY }
+
+
+            //0-top,1-left,2-right,3-bottom
+
+            function roll(lastroll) {
+                test = true;
+                while (test) {
+                    chosen = (Math.floor(Math.random() * (4)) + 0)
+
+
+                    switch (n) {
+                        case 3:
+                            movement = (240 * (n - 1)) + "px"
+                            break;
+                        case 4:
+                            movement = (180 * (n - 1)) + "px"
+                            break;
+                        case 5:
+                            movement = (144 * (n - 1)) + "px"
+                            break;
+                        case 6:
+                            movement = (120 * (n - 1)) + "px"
+                            break;
+                    }
+
+
+                    switch (chosen) {
+                        case 0:
+
+                            if (lastroll != 3 && puzelgray.style.top != "0px") {
+                                test = false;
+                            }
+
+                            break;
+                        case 1:
+
+                            if (lastroll != 2 && puzelgray.style.left != "0px") {
+                                test = false;
+                            }
+
+                            break;
+                        case 2:
+
+                            if (lastroll != 1 && puzelgray.style.left != movement) {
+                                test = false;
+                            }
+
+                            break;
+                        case 3:
+
+                            if (lastroll != 0 && puzelgray.style.top != movement) {
+                                test = false;
+                            }
+
+                            break;
+
+                    }
+                }
+                console.log(chosen)
+                return chosen
+            }
+
+            function neargraytiles(kierunek) {
+                i = n * n;
+                while (i > 0) {
+                    puzelgray = document.getElementById("puzel" + (n * n))
+                    puzelidtop = document.getElementById("puzel" + i)
+                    if (pixelcalc(puzelgray.style.top, -bok) == puzelidtop.style.top && puzelgray.style.left == puzelidtop.style.left) {
+                        var TopOverGrayX = getComputedStyle(puzelidtop).left
+                        var TopOverGrayY = getComputedStyle(puzelidtop).top
+
+                        i = 0
+                    } else {
+                        i = i - 1
+                    }
+                }
+
+                i = n * n;
+                while (i > 0) {
+                    puzelidleft = document.getElementById("puzel" + i)
+                    if (puzelgray.style.top == puzelidleft.style.top && pixelcalc(puzelgray.style.left, -bok) == puzelidleft.style.left) {
+                        var LeftOverGrayX = getComputedStyle(puzelidleft).left
+                        var LeftOverGrayY = getComputedStyle(puzelidleft).top
+
+                        i = 0
+                    } else {
+                        i = i - 1
+                    }
+                }
+
+                i = n * n;
+                while (i > 0) {
+                    puzelidright = document.getElementById("puzel" + i)
+                    if (puzelgray.style.top == puzelidright.style.top && pixelcalc(puzelgray.style.left, +bok) == puzelidright.style.left) {
+                        var RightOverGrayX = getComputedStyle(puzelidright).left
+                        var RightOverGrayY = getComputedStyle(puzelidright).top
+
+                        i = 0
+                    } else {
+                        i = i - 1
+                    }
+                }
+
+                i = n * n;
+                while (i > 0) {
+                    puzelidbottom = document.getElementById("puzel" + i)
+                    if (pixelcalc(puzelgray.style.top, +bok) == puzelidbottom.style.top && puzelgray.style.left == puzelidbottom.style.left) {
+                        var BottomOverGrayX = getComputedStyle(puzelidbottom).left
+                        var BottomOverGrayY = getComputedStyle(puzelidbottom).top
+
+                        i = 0
+                    } else {
+                        i = i - 1
+                    }
+                }
+
+                koordynaty[0] = { pos: top, x: TopOverGrayX, y: TopOverGrayY }
+                koordynaty[1] = { pos: top, x: LeftOverGrayX, y: LeftOverGrayY }
+                koordynaty[2] = { pos: top, x: RightOverGrayX, y: RightOverGrayY }
+                koordynaty[3] = { pos: top, x: BottomOverGrayX, y: BottomOverGrayY }
+
+                return (koordynaty[kierunek])
+            }
+
+
+            function finder(xpos, ypos) {
+                v = n * n
+                while (v > 0) {
+                    if (getComputedStyle(document.getElementById("puzel" + v)).left == xpos && getComputedStyle(document.getElementById("puzel" + v)).top == ypos) {
+
+                        zwrot = document.getElementById("puzel" + v)
+                        v = 0
+                        return zwrot
+                    }
+
+                    v = v - 1
+                }
+            }
+
+
+
+            async function mieszanie() {
+                var lastroll = null
+                f = 1
+                while (f < n * n * 10 + 1) {
+                    console.log("lastroll:" + lastroll)
+                    rolling = roll(lastroll)
+                    lastroll = rolling
+                    console.log(neargraytiles(rolling))
+                    lokalizacja = neargraytiles(rolling)
+                    console.log(lokalizacja)
+
+                    lokalizacja = finder(lokalizacja.x, lokalizacja.y)
+                    console.log(lokalizacja)
+
+                    leftspotfortile = puzelgray.style.left
+                    topspotfortile = puzelgray.style.top
+
+                    puzelgray.style.left = getComputedStyle(lokalizacja).left
+                    puzelgray.style.top = getComputedStyle(lokalizacja).top
+
+                    lokalizacja.style.left = leftspotfortile
+                    lokalizacja.style.top = topspotfortile
+                    console.log("przemieszanie nr" + f)
+                    f = f + 1
+                    if (document.querySelector('input[type=checkbox]').checked) {
+                        await new Promise(r => setTimeout(r, 10));
+                    }
+
+
+                }
+            }
+
+            mieszanie()
+
+
+            function moving() {
+                check = false;
+                clicked = document.getElementById(event.target.id)
+
+
+                for (j = 0; j < 4; j++) {
+                    if (neargraytiles(j).x == clicked.style.left && neargraytiles(j).y == clicked.style.top) {
+                        check = true;
+                    }
+                }
+
+                if (check) {
+                    newGrayX = clicked.style.left
+                    newGrayY = clicked.style.top
+                    newChosenX = puzelgray.style.left
+                    nexChosenY = puzelgray.style.top
+
+                    clicked.style.left = newChosenX
+                    clicked.style.top = nexChosenY
+                    puzelgray.style.left = newGrayX
+                    puzelgray.style.top = newGrayY
+
+                    wintest = 0
+                    for (h = n * n; h > 0; h--) {
+                        puzelek = document.getElementById("puzel" + h)
+                        if (solution[h].x == puzelek.style.left && solution[h].y == puzelek.style.top) {
+                            wintest = wintest + 1
+                        }
+
+                    }
+                    if (wintest = n * n) {
+                        alert("Wygranko!");
+                    }
+
+                }
+
+
+
+            }
+
+
+        }
+
+        /*
+                function winning(n) {
+                    for (h = n * n; h > 0; h--) {
+                        puzelek = document.getElementById("puzel" + h)
+                        puzelek.style.left = solution[h].x
+                        puzelek.style.top = solution[h].y
+                    }
+                    wintest = 0
+                    for (h = n * n; h > 0; h--) {
+                        puzelek = document.getElementById("puzel" + h)
+                        if (solution[h].x == puzelek.style.left && solution[h].y == puzelek.style.top) {
+                            wintest = wintest + 1
+                        }
+                    }
+        
+                    if (wintest = n * n) {
+                        alert("Wygranko!");
+                    }
+                }
+        */
+
+
+
+
+    </script>
+</body>
+
+</html>

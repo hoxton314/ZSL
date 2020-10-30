@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>--4.1--</title>
+
+    <style>
+        #plansza {
+
+            position: absolute;
+            left: 700px;
+            top: 100px;
+
+
+        }
+        #planszagracza {
+
+            position: absolute;
+            left: 100px;
+            top: 100px;
+
+
+        }
+
+        .kwadrat {
+            width: 50px;
+            height: 50px;
+            border-style: solid;
+            border-width: 1px;
+            box-sizing: border-box;
+        }
+
+        .kwadratgracza {
+            width: 50px;
+            height: 50px;
+            border-style: solid;
+            border-width: 1px;
+            box-sizing: border-box;
+        }
+
+        #statki{
+            position: absolute;
+            left: 100px;
+            top: 650px;
+            height: 200px;
+            width: 500px;
+            border-style: solid;
+            border-width: 1px;
+            box-sizing: border-box;
+            padding-left: 20px;
+            padding-top: 20px;
+        }
+        
+        .statkowepole{
+            width: 40px;
+            height: 40px;
+            border-style: solid;
+            border-width: 1px;
+            box-sizing: border-box;
+            float:left;
+        }
+        .statek4:hover{
+            background-color: green;
+        }
+        .statek3:hover{
+            background-color: green;
+        }
+        .statek2:hover{
+            background-color: green;
+        }
+        .statek1:hover{
+            background-color: green;
+        }
+        .statek1{
+            float: left;
+            margin-right: 60px;
+            margin-bottom: 20px;
+        }
+        .statek2{
+            float: left;
+            margin-right: 70px;
+            margin-bottom: 20px;
+        }
+        .statek3{
+            float: left;
+            margin-right: 25px;
+            margin-bottom: 20px;
+        }
+        .statek4{
+            float: left;
+            margin-right: 25px;
+            margin-bottom: 20px;
+        }
+
+
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <div id="planszagracza">
+
+    </div>
+    <div id="plansza">
+
+    </div>
+
+    <div id="statki">
+        <div id="statek4nr1" class="statek4"> <div class="statkowepole"></div> <div class="statkowepole"></div> <div class="statkowepole"></div> <div class="statkowepole"></div> </div>
+
+        <div id="statek3nr1" class="statek3"> <div class="statkowepole"></div><div class="statkowepole"></div><div class="statkowepole"></div> </div> 
+        <div id="statek3nr2" class="statek3"> <div class="statkowepole"></div><div class="statkowepole"></div><div class="statkowepole"></div> </div>
+
+        <div id="statek2nr1" class="statek2"> <div class="statkowepole"></div><div class="statkowepole"></div> </div>
+        <div id="statek2nr2" class="statek2"> <div class="statkowepole"></div><div class="statkowepole"></div> </div>
+        <div id="statek2nr3" class="statek2"> <div class="statkowepole"></div><div class="statkowepole"></div> </div> 
+
+        <div id="statek1nr1" class="statek1"> <div class="statkowepole"></div> </div>  
+        <div id="statek1nr2" class="statek1"> <div class="statkowepole"></div> </div>  
+        <div id="statek1nr3" class="statek1"> <div class="statkowepole"></div> </div>  
+        <div id="statek1nr4" class="statek1"> <div class="statkowepole"></div> </div>  
+    </div>
+
+
+    <script>
+//randomizowanie pozycji statków komputera
+
+        var counter = 0;
+        var pole = document.createElement("DIV");
+
+
+        for (l = 0; l < 10; l++) {
+            for (i = 0; i < 10; i++) {
+                counter++
+
+
+                document.getElementById("plansza").innerHTML +=
+                    "<div class='kwadrat' id='kwadrat-" + "r" + (l + 1) + "p" + (i + 1) + "' style='position: absolute; left: " + i * 50 + "px; top: " + l * 50 + "px; background-color: white'> </div>";
+            }
+
+        }
+
+
+        var coords = [];
+        var c = 1
+        for (m = 1; m <= 10; m++) {
+            for (n = 1; n <= 10; n++) {
+                coords[c] = [{ r: m, p: n, statek: false, bokstatku: false }]
+                c = c + 1;
+            }
+        }
+
+
+
+
+        function masztowiec1(r, p) {
+            coords[(r * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+            kwadrat = document.getElementById("kwadrat-r" + r + "p" + p)
+            kwadrat.style.backgroundColor = "blue"
+
+
+
+        }
+
+        function masztowiec2(r, p, rotation) {
+            if (rotation == 1) {
+
+                coords[(r * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[((r + 1) * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + parseInt(r + 1) + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+            } else {
+
+                coords[(r * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[(r * 10) + p - 9] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + parseInt(p + 1))
+                kwadrat.style.backgroundColor = "blue"
+            }
+
+
+        }
+
+        function masztowiec3(r, p, rotation) {
+            if (rotation == 1) {
+
+                coords[(r * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[((r + 1) * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[((r + 2) * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + parseInt(r + 1) + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + parseInt(r + 2) + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+            } else {
+
+                coords[(r * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[(r * 10) + p - 9] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[(r * 10) + p - 8] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + parseInt(p + 1))
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + parseInt(p + 2))
+                kwadrat.style.backgroundColor = "blue"
+            }
+
+
+        }
+
+        function masztowiec4(r, p, rotation) {
+            if (rotation == 1) {
+
+                coords[(r * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[((r + 1) * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[((r + 2) * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[((r + 3) * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + parseInt(r + 1) + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + parseInt(r + 2) + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + parseInt(r + 3) + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+            } else {
+
+                coords[(r * 10) + p - 10] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[(r * 10) + p - 9] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[(r * 10) + p - 8] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                coords[(r * 10) + p - 7] = [{ r: r, p: p, statek: true, bokstatku: false }];
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + p)
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + parseInt(p + 1))
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + parseInt(p + 2))
+                kwadrat.style.backgroundColor = "blue"
+                kwadrat = document.getElementById("kwadrat-r" + r + "p" + parseInt(p + 3))
+                kwadrat.style.backgroundColor = "blue"
+            }
+
+
+        }
+
+
+        //random 1xczteromasztowiec
+
+        i = 1;
+        while (i > 0) {
+            test = 0
+            rotation = (Math.floor(Math.random() * (3 - 1)) + 1)
+            console.log("rotation roll: " + rotation)
+            //1=pionowy 2=poziomy
+            console.log("test start: " + test)
+
+            if (rotation == 1) {
+                row = Math.floor(Math.random() * (7 - 1)) + 1;
+                pos = Math.floor(Math.random() * (11 - 1)) + 1;
+
+                try {
+                    if (coords[((row + 2) * 10) + pos - 10][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 2) * 10) + pos - 11][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 2) * 10) + pos - 9][0].statek) { test = test + 1 }
+                } catch { }
+
+                try {
+                    if (coords[((row + 3) * 10) + pos - 10][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 3) * 10) + pos - 11][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 3) * 10) + pos - 9][0].statek) { test = test + 1 }
+                } catch { }
+
+
+                try {
+                    if (coords[((row + 4) * 10) + pos - 10][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 4) * 10) + pos - 11][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 4) * 10) + pos - 9][0].statek) { test = test + 1 }
+                } catch { }
+                console.log("rotation: " + rotation)
+            } else {
+                row = Math.floor(Math.random() * (11 - 1)) + 1;
+                pos = Math.floor(Math.random() * (7 - 1)) + 1;
+
+                try {
+                    if (coords[(row * 10) + pos - 8][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 1) * 10) + pos - 8][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row - 1) * 10) + pos - 8][0].statek) { test = test + 1 }
+                } catch { }
+
+                try {
+                    if (coords[(row * 10) + pos - 7][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 1) * 10) + pos - 7][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row - 1) * 10) + pos - 7][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[(row * 10) + pos - 6][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 1) * 10) + pos - 6][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row - 1) * 10) + pos - 6][0].statek) { test = test + 1 }
+                } catch { }
+                console.log("rotation: " + rotation)
+            }
+
+            try {
+                if (coords[(row * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[(row * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[(row * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+
+
+            console.log("test end: " + test)
+            if (test == 0) {
+                masztowiec4(row, pos, rotation)
+                i = i - 1;
+            }
+        }
+
+        //random 2xtrzymasztowiec
+
+        i = 2;
+        while (i > 0) {
+            test = 0
+            rotation = (Math.floor(Math.random() * (3 - 1)) + 1)
+            console.log("rotation roll: " + rotation)
+            //1=pionowy 2=poziomy
+            console.log("test start: " + test)
+
+            if (rotation == 1) {
+                row = Math.floor(Math.random() * (8 - 1)) + 1;
+                pos = Math.floor(Math.random() * (11 - 1)) + 1;
+
+                try {
+                    if (coords[((row + 2) * 10) + pos - 10][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 2) * 10) + pos - 11][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 2) * 10) + pos - 9][0].statek) { test = test + 1 }
+                } catch { }
+
+                try {
+                    if (coords[((row + 3) * 10) + pos - 10][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 3) * 10) + pos - 11][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 3) * 10) + pos - 9][0].statek) { test = test + 1 }
+                } catch { }
+                console.log("rotation: " + rotation)
+            } else {
+                row = Math.floor(Math.random() * (11 - 1)) + 1;
+                pos = Math.floor(Math.random() * (8 - 1)) + 1;
+
+                try {
+                    if (coords[(row * 10) + pos - 8][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 1) * 10) + pos - 8][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row - 1) * 10) + pos - 8][0].statek) { test = test + 1 }
+                } catch { }
+
+                try {
+                    if (coords[(row * 10) + pos - 7][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 1) * 10) + pos - 7][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row - 1) * 10) + pos - 7][0].statek) { test = test + 1 }
+                } catch { }
+                console.log("rotation: " + rotation)
+            }
+
+            try {
+                if (coords[(row * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[(row * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[(row * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+
+
+            console.log("test end: " + test)
+            if (test == 0) {
+                masztowiec3(row, pos, rotation)
+                i = i - 1;
+            }
+        }
+
+        //random 3xdwumasztowiec
+
+        i = 3;
+        while (i > 0) {
+            test = 0
+            rotation = (Math.floor(Math.random() * (3 - 1)) + 1)
+            console.log("rotation roll: " + rotation)
+            //1=pionowy 2=poziomy
+            console.log("test start: " + test)
+
+            if (rotation == 1) {
+                row = Math.floor(Math.random() * (10 - 1)) + 1;
+                pos = Math.floor(Math.random() * (11 - 1)) + 1;
+
+                try {
+                    if (coords[((row + 2) * 10) + pos - 10][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 2) * 10) + pos - 11][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 2) * 10) + pos - 9][0].statek) { test = test + 1 }
+                } catch { }
+                console.log("rotation: " + rotation)
+            } else {
+                row = Math.floor(Math.random() * (11 - 1)) + 1;
+                pos = Math.floor(Math.random() * (10 - 1)) + 1;
+
+                try {
+                    if (coords[(row * 10) + pos - 8][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row + 1) * 10) + pos - 8][0].statek) { test = test + 1 }
+                } catch { }
+                try {
+                    if (coords[((row - 1) * 10) + pos - 8][0].statek) { test = test + 1 }
+                } catch { }
+                console.log("rotation: " + rotation)
+            }
+
+            try {
+                if (coords[(row * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[(row * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[(row * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+
+
+            console.log("test end: " + test)
+            if (test == 0) {
+                masztowiec2(row, pos, rotation)
+                i = i - 1;
+            }
+        }
+
+        //random 4xjednomasztowiec
+        i = 4;
+        while (i > 0) {
+            test = 0
+            console.log("test start: " + test)
+            row = Math.floor(Math.random() * (11 - 1)) + 1;
+            //row = prompt("Please enter row number:", 6);
+            //pos = prompt("Please enter pos number:", 6);
+            pos = Math.floor(Math.random() * (11 - 1)) + 1;
+            try {
+                if (coords[(row * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 10][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[(row * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[(row * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 11][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row + 1) * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+            try {
+                if (coords[((row - 1) * 10) + pos - 9][0].statek) { test = test + 1 }
+            } catch { }
+
+            console.log("test end: " + test)
+            if (test == 0) {
+                masztowiec1(row, pos)
+                i = i - 1;
+            }
+        }
+
+
+
+    </script>
+
+    <script>
+
+// ustawianie statków użytkownika
+
+for (l = 0; l < 10; l++) {
+            for (i = 0; i < 10; i++) {
+                counter++
+
+
+                document.getElementById("planszagracza").innerHTML +=
+                    "<div class='kwadratgracza' id='kwadratgracza-" + "r" + (l + 1) + "p" + (i + 1) + "' style='position: absolute; left: " + i * 50 + "px; top: " + l * 50 + "px; background-color: white'> </div>";
+            }
+
+        }
+
+function coloring(kolorowany){
+    if(kolorowany=="statek4nr1"){
+            statek4nr1.style.backgroundColor = "blue"
+        }else{
+            statek4nr1.style.backgroundColor = "white"
+        }
+    if(kolorowany=="statek3nr1"){
+            statek3nr1.style.backgroundColor = "blue"
+        }else{
+            statek3nr1.style.backgroundColor = "white"  
+        }  
+    if(kolorowany=="statek3nr2"){
+        statek3nr2.style.backgroundColor = "blue"
+        }else{
+            statek3nr2.style.backgroundColor = "white"  
+        }  
+    if(kolorowany=="statek2nr1"){
+        statek2nr1.style.backgroundColor = "blue"
+        }else{
+            statek2nr1.style.backgroundColor = "white"  
+        }  
+    if(kolorowany=="statek2nr2"){
+        statek2nr2.style.backgroundColor = "blue"
+        }else{
+            statek2nr2.style.backgroundColor = "white"  
+        }  
+    if(kolorowany=="statek2nr3"){
+        statek2nr3.style.backgroundColor = "blue"
+        }else{
+            statek2nr3.style.backgroundColor = "white"  
+        }  
+    if(kolorowany=="statek1nr1"){
+        statek1nr1.style.backgroundColor = "blue"
+        }else{
+            statek1nr1.style.backgroundColor = "white"  
+        }  
+    if(kolorowany=="statek1nr2"){
+        statek1nr2.style.backgroundColor = "blue"
+        }else{
+            statek1nr2.style.backgroundColor = "white"  
+        }  
+    if(kolorowany=="statek1nr3"){
+        statek1nr3.style.backgroundColor = "blue"
+        }else{
+            statek1nr3.style.backgroundColor = "white"  
+        }  
+    if(kolorowany=="statek1nr4"){
+        statek1nr4.style.backgroundColor = "blue"
+        }else{
+            statek1nr4.style.backgroundColor = "white"  
+        }  
+}
+
+
+
+
+    document.getElementById("statek4nr1").onclick = function() {
+        
+        console.log(this.id)
+        var statekclicked=this.id;
+
+        coloring(statekclicked)
+
+    };
+    document.getElementById("statek3nr1").onclick = function() {
+        
+        console.log(this.id)
+        var statekclicked=this.id;
+
+coloring(statekclicked)
+    };
+    document.getElementById("statek3nr2").onclick = function() {
+        
+        console.log(this.id)
+        var statekclicked=this.id;
+
+coloring(statekclicked)
+    }; 
+    document.getElementById("statek2nr1").onclick = function() {
+        
+        console.log(this.id)
+        var statekclicked=this.id;
+
+coloring(statekclicked)
+    };
+    document.getElementById("statek2nr2").onclick = function() {
+        
+        console.log(this.id)
+        var statekclicked=this.id;
+
+coloring(statekclicked)
+    };
+    document.getElementById("statek2nr3").onclick = function() {
+        
+        console.log(this.id)
+        var statekclicked=this.id;
+
+coloring(statekclicked)
+    };
+    document.getElementById("statek1nr1").onclick = function() {
+        
+        console.log(this.id)
+        var statekclicked=this.id;
+
+coloring(statekclicked)
+    };
+    document.getElementById("statek1nr2").onclick = function() {
+        
+        console.log(this.id)
+        var statekclicked=this.id;
+
+coloring(statekclicked)
+    };
+    document.getElementById("statek1nr3").onclick = function() {
+        
+        console.log(this.id)
+        var statekclicked=this.id;
+
+coloring(statekclicked)
+    };
+    document.getElementById("statek1nr4").onclick = function() {
+        
+        console.log(this.id)
+        var statekclicked=this.id;
+
+coloring(statekclicked)
+    };
+
+    </script>
+</body>
+
+</html>

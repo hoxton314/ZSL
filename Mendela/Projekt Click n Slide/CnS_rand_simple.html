@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click n Slide</title>
+
+    <style>
+        body {
+            background-color: black;
+        }
+
+        #panel {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #pic {
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+    <div id="panel">
+
+        <img id="pic" src="pic.jpg">
+
+        <div id="buttons"> <button onclick="klocki(3)" id="button3x3">3x3</button> <button onclick="klocki(4)"
+                id="button4x4">4x4</button> <button onclick="klocki(5)" id="button5x5">5x5</button> <button
+                onclick="klocki(6)" id="button6x6">6x6</button></div>
+
+
+
+    </div>
+
+
+
+    <script>
+        var check = 0
+        function klocki(n) {
+            if (check == 0) {
+
+                panel.innerHTML += "<div id='puzle'> </div>"
+
+                puzle.style.height = "720px"
+                puzle.style.width = "720px"
+                puzle.style.borderStyle = "solid"
+                puzle.style.borderWidth = "1px"
+                puzle.style.boxSizing = "border-box"
+                puzle.style.marginRight = "auto"
+                puzle.style.marginLeft = "auto"
+
+
+
+                check = 1;
+            } else {
+                puzle.innerHTML = "";
+            }
+
+
+
+
+
+
+
+            console.log(n)
+
+            //document.getElementById("puzle").innerHTML +=
+            //"<div class='kwadrat' id='kwadrat-" + "r" + (l + 1) + "p" + (i + 1) + "' style='position: absolute; left: " + i * 50 + "px; top: " + l * 50 + "px; background-color: white'> </div>";
+            //src='pic.jpg'
+
+
+            var tabcheck = []
+            tabcheck[0] = [];
+            tabcheck[1] = [];
+            tabcheck[2] = [];
+            tabcheck[3] = [];
+
+            counter = 0
+            for (l = 1; l < ((n * n) + 1); l++) {
+                counter = counter + 1
+                tabcheck[n - 3][counter] = { x: null, y: null, taken: false }
+            }
+
+
+            counter = 0
+            for (l = 1; l < (n + 1); l++) {
+                for (i = 1; i < (n + 1); i++) {
+
+                    counter = counter + 1
+                    puzle.style.position = "relative"
+                    puzle.innerHTML += "<div id='puzel" + counter + "' style='height:" + (720 / n) + "px; width:" + (720 / n) + "px; position:absolute;'> </div>"
+                    console.log("i: " + i + "   l: " + l)
+                    var puzelid = document.getElementById("puzel" + counter)
+                    puzelid.style.backgroundImage = "url('pic.jpg')"
+                    puzelid.style.backgroundPosition = -(720 / n) * (i - 1) + "px " + -(720 / n) * (l - 1) + "px"
+
+
+                    truecheck = true;
+                    while (truecheck) {
+                        truecheck = false
+                        x = (720 / n) * (Math.floor(Math.random() * (n)) + 0)
+                        y = (720 / n) * (Math.floor(Math.random() * (n)) + 0)
+                        for (k = n * n; k > 0; k--) {
+                            if (tabcheck[n - 3][k].x == x && tabcheck[n - 3][k].y == y) {
+                                truecheck = true
+                                console.log("tcx:" + tabcheck[n - 3][k].x + "tcy:" + tabcheck[n - 3][k].y + "x:" + x + "y:" + y)
+                            }
+
+                        }
+                    }
+
+                    tabcheck[n - 3][counter] = { x: x, y: y, taken: true }
+                    puzelid.style.left = x + "px"
+                    puzelid.style.top = y + "px"
+                }
+
+
+            }
+
+
+
+
+
+            puzelid = document.getElementById("puzel" + (n * n))
+            puzelid.style.backgroundColor = "gray"
+            puzelid.style.backgroundImage = ""
+        }
+
+        //puzel9.style.backgroundImage = ""
+        //puzel9.style.backgroundColor = "gray"
+
+//for(i=n*n*2;i>0;i--){
+//var puzelid1 = document.getElementById("puzel"+ (Math.floor(Math.random() * (n*n)+1) + 1) )
+//var puzelid2 = document.getElementById("puzel"+ (Math.floor(Math.random() * (n*n)+1) + 1) )
+//var a1 = puzelid1.style.left
+//var a2 = puzelid1.style.top
+//var b1 = puzelid2.style.left
+//var b2 = puzelid2.style.top
+//puzelid1.style.left = b1
+//puzelid2.style.left = a1
+//puzelid1.style.top = b2
+//puzelid2.style.top = a2
+//}
+
+
+
+
+
+    </script>
+</body>
+
+</html>
