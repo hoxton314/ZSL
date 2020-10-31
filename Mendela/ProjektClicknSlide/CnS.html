@@ -266,6 +266,7 @@
             }
 
             function neargraytiles(kierunek) {
+                puzelgray = document.getElementById("puzel" + (n * n))
                 i = n * n;
                 while (i > 0) {
                     puzelgray = document.getElementById("puzel" + (n * n))
@@ -345,6 +346,7 @@
 
 
             async function mieszanie() {
+                puzelgray = document.getElementById("puzel" + (n * n))
                 var lastroll = null
                 f = 1
                 while (f < n * n * 10 + 1) {
@@ -380,6 +382,7 @@
 
 
             function moving() {
+                puzelgray = document.getElementById("puzel" + (n * n))
                 check = false;
                 clicked = document.getElementById(event.target.id)
 
