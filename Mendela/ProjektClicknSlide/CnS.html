@@ -17,11 +17,64 @@
             margin-left: auto;
             margin-right: auto;
         }
-
+        #top{
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+}
         #pic {
             height: 200px;
             width: 200px;
         }
+    /* Slider */
+        #slider {
+            margin: auto;
+            text-align: center;
+            width: 300px;
+            height: 300px;
+        }
+        ul {
+            margin: auto;
+            text-align: center;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 300px;
+            height: 300px;
+        }
+        .pic {
+            width: 300px;
+            height: 300px;
+        }
+        li {
+            margin: auto;
+            display: block;
+            list-style: none;
+        }
+        button.prev,
+        button.next {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 50px;
+            height: 50px;
+        }
+        button.prev {
+            position: relative;
+            left: -50px;
+            top: -150px;
+        }
+        button.next {
+            position: relative;
+            left: 300px;
+            top: -200px;
+        }
+        #arrowleft {
+            transform: rotate(180deg);
+        }
+
     </style>
 
 </head>
@@ -29,10 +82,25 @@
 
 
 <body>
+    <div id="top">
+    Mieszanie sekwencyjne (widoczne przemieszczanie puzli): <input type="checkbox" class="checkboxasync" value="1">
+        <div id="slider">
+        <ul>
+            <li><img class="pic" id="img1" src="pic1.jpg"></li>
+            <li><img class="pic" id="img2" src="pic2.jpg"></li>
+            <li><img class="pic" id="img3" src="pic3.jpg"></li>
+            <li><img class="pic" id="img4" src="pic4.jpg"></li>
+        </ul>
+            <button class="prev" onclick="show(-1)"><img class="arrow" id="arrowleft" src="arrow.png"></button>
+        <button class="next" onclick="show(+1)"><img class="arrow" id="arrowright" src="arrow.png"></button>
+        </div>
+    </div>
+
     <div id="panel">
 
-        <img id="pic" src="pic.jpg"><br>
-        Mieszanie sekwencyjne (widoczne przemieszczanie puzli): <input type="checkbox" value="1">
+        
+
+       
         <div id="buttons"> <button onclick="klocki(3)" id="button3x3">3x3</button> <button onclick="klocki(4)"
                 id="button4x4">4x4</button> <button onclick="klocki(5)" id="button5x5">5x5</button> <button
                 onclick="klocki(6)" id="button6x6">6x6</button></div>
@@ -44,29 +112,35 @@
 
 
     <script>
+//Slider
 
+let grafiki = document.querySelectorAll('ul li');
+        let pozycja = 0;
+        grafiki[pozycja].scrollIntoView({ behavior: 'smooth' });
+
+
+        window.show = function (increase) {
+            pozycja += increase;
+            pozycja = pozycja == grafiki.length ? 0 : pozycja;
+            pozycja = pozycja == -1 ? grafiki.length - 1 : pozycja;
+            pozycja = Math.min(Math.max(pozycja, 0),grafiki.length - 1);
+            grafiki[pozycja].scrollIntoView({ behavior: 'smooth' });
+            wybranyobrazek=pozycja+1
+        }
+        wybranyobrazek=pozycja+1
+//koniec slidera
 
         var solution = []
-
         var check = 0
-
         function pixelcalc(pixvar, num) {
             pixvar = pixvar.slice(0, -2);
             pixvar = parseInt(pixvar) + num
             pixvar = pixvar + "px"
             return pixvar
         }
-
-
         //0-top,1-left,2-right,3-bottom
-
-
-
-
-
-
         function klocki(n) {
-
+            puzelgray = null
             switch (n) {
                 case 3:
                     bok = 240
@@ -82,7 +156,11 @@
                     break;
             }
 
-            if (check == 0) {
+            try{
+                puzle.innerHTML = "";
+            }catch {
+
+            }
 
                 panel.innerHTML += "<div id='puzle'> </div>"
 
@@ -96,10 +174,10 @@
                 //
                 document.getElementById("puzle").addEventListener("click", moving);
                 //
-                check = 1;
-            } else {
-                puzle.innerHTML = "";
-            }
+
+            
+                
+            
 
 
 
@@ -133,7 +211,7 @@
                     solution[counter] = { id: 'puzel' + counter, x: ((720 / n) * (i - 1)) + "px", y: ((720 / n) * (l - 1)) + "px" }
 
                     var puzelid = document.getElementById("puzel" + counter)
-                    puzelid.style.backgroundImage = "url('pic.jpg')"
+                    puzelid.style.backgroundImage = "url('pic"+wybranyobrazek+".jpg')"
                     puzelid.style.backgroundPosition = -(720 / n) * (i - 1) + "px " + -(720 / n) * (l - 1) + "px"
                 }
             }
@@ -370,7 +448,7 @@
                     lokalizacja.style.top = topspotfortile
                     console.log("przemieszanie nr" + f)
                     f = f + 1
-                    if (document.querySelector('input[type=checkbox]').checked) {
+                    if (document.querySelector('.checkboxasync').checked) {
                         await new Promise(r => setTimeout(r, 10));
                     }
 

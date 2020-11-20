@@ -1,0 +1,27 @@
+{
+  "name": "stefanczyk-projekt01",
+  "version": "1.1.0",
+  "description": "Stefanczyk-Projekt01",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoxton314/Stefanczyk-Projekt01.git"
+  },
+  "author": "Igor Kaliciński",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hoxton314/Stefanczyk-Projekt01/issues"
+  },
+  "homepage": "https://github.com/hoxton314/Stefanczyk-Projekt01#readme",
+  "keywords": [
+    "stefanczyk"
+  ]
+}
