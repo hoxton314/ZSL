@@ -144,9 +144,11 @@
 
 
     <script>
-        wintest = 0;
-        //Slider
 
+        wintest = 0;
+
+
+        //Slider
         let grafiki = document.querySelectorAll('ul li');
         let pozycja = 0;
         grafiki[pozycja].scrollIntoView({ behavior: 'smooth' });
@@ -195,7 +197,7 @@
 
             }
 
-            panel.innerHTML += "<div id='puzle'> </div>"
+            panel.innerHTML = " <div id='buttons'> <button onclick='klocki(3)' id='button3x3'>3x3</button> <button onclick='klocki(4)' id='button4x4'>4x4</button> <button onclick='klocki(5)' id='button5x5'>5x5</button> <button onclick='klocki(6)' id='button6x6'>6x6</button></div> " + "<div id='puzle'> </div>"
 
             puzle.style.height = "720px"
             puzle.style.width = "720px"
@@ -454,6 +456,7 @@
             }
 
             async function timer() {
+                timerdiv.innerHTML = ""
                 var timerON = true;
                 var milisecs = 0;
                 var secs = 0;
@@ -464,6 +467,7 @@
 
 
                 while (timerON) {
+
                     timerdiv.innerHTML = ""
                     timerdiv.innerHTML += hours.toString().length == 1 ? digitpart1 + 0 + digitpart2 + digitpart1 + hours.toString().charAt(0) + digitpart2 : digitpart1 + hours.toString().charAt(0) + digitpart2 + digitpart1 + hours.toString().charAt(1) + digitpart2
                     timerdiv.innerHTML += digitpart1 + "colon" + digitpart2
@@ -495,6 +499,8 @@
                             var timerON = false;
                             var finishedin = (hours.toString().length == 1 ? "0" : "") + hours.toString() + ":" + (mins.toString().length == 1 ? "0" : "") + mins.toString() + ":" + (secs.toString().length == 1 ? "0" : "") + secs.toString() + "." + (milisecs.toString().length == 1 ? "0" : "") + milisecs.toString()
                             alert("Wygrałeś! Czas:" + finishedin);
+                            wintest = 0;
+                            break;
                         }
                     } catch { }
 
