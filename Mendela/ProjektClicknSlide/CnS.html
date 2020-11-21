@@ -146,7 +146,7 @@
 
 
     <script>
-
+        timerON = false
         wintest = 0;
 
 
@@ -513,7 +513,7 @@
 
                     try {
                         if (wintest == n * n) {
-                            var timerON = false;
+                            timerON = false;
                             var finishedin = (hours.toString().length == 1 ? "0" : "") + hours.toString() + ":" + (mins.toString().length == 1 ? "0" : "") + mins.toString() + ":" + (secs.toString().length == 1 ? "0" : "") + secs.toString() + "." + (milisecs.toString().length == 1 ? "0" : "") + milisecs.toString()
                             alert("Wygrałeś! Czas:" + finishedin);
                             wintest = 0;
