@@ -113,11 +113,13 @@
     <div id="top">
         Mieszanie sekwencyjne (widoczne przemieszczanie puzli): <input type="checkbox" class="checkboxasync" value="1">
         <div id="slider">
-            <ul>
-                <li><img class="pic" id="img1" src="pics/pic1.jpg"></li>
-                <li><img class="pic" id="img2" src="pics/pic2.jpg"></li>
-                <li><img class="pic" id="img3" src="pics/pic3.jpg"></li>
-                <li><img class="pic" id="img4" src="pics/pic4.jpg"></li>
+            <ul id="sliderul">
+                <li id="list1"><img class="pic" id="img0" src="pics/pic4.jpg"></li>
+                <li id="list1"><img class="pic" id="img1" src="pics/pic1.jpg"></li>
+                <li id="list2"><img class="pic" id="img2" src="pics/pic2.jpg"></li>
+                <li id="list3"><img class="pic" id="img3" src="pics/pic3.jpg"></li>
+                <li id="list4"><img class="pic" id="img4" src="pics/pic4.jpg"></li>
+                <li id="list4"><img class="pic" id="img5" src="pics/pic1.jpg"></li>
             </ul>
             <button class="prev" onclick="show(-1)"><img class="arrow" id="arrowleft" src="pics/arrow.png"></button>
             <button class="next" onclick="show(+1)"><img class="arrow" id="arrowright" src="pics/arrow.png"></button>
@@ -150,7 +152,7 @@
 
         //Slider
         let grafiki = document.querySelectorAll('ul li');
-        let pozycja = 0;
+        let pozycja = 1;
         grafiki[pozycja].scrollIntoView({ behavior: 'smooth' });
 
 
@@ -161,8 +163,18 @@
             pozycja = Math.min(Math.max(pozycja, 0), grafiki.length - 1);
             grafiki[pozycja].scrollIntoView({ behavior: 'smooth' });
             wybranyobrazek = pozycja + 1
+            if (pozycja == 0) {
+                grafiki[0].scrollIntoView({ behavior: 'smooth' });
+                pozycja = 4
+                grafiki[pozycja].scrollIntoView({ behavior: 'auto' });
+            }
+            if (pozycja == 5) {
+                grafiki[5].scrollIntoView({ behavior: 'smooth' });
+                pozycja = 1
+                grafiki[pozycja].scrollIntoView({ behavior: 'auto' });
+            }
         }
-        wybranyobrazek = pozycja + 1
+
         //koniec slidera
 
         var solution = []
@@ -175,6 +187,8 @@
         }
         //0-top,1-left,2-right,3-bottom
         function klocki(n) {
+            timerON = false;
+
             puzelgray = null
             switch (n) {
                 case 3:
@@ -457,7 +471,7 @@
 
             async function timer() {
                 timerdiv.innerHTML = ""
-                var timerON = true;
+                timerON = true;
                 var milisecs = 0;
                 var secs = 0;
                 var mins = 0;
