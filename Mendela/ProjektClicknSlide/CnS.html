@@ -371,7 +371,8 @@
                     console.log("przemieszanie nr" + f)
                     f = f + 1
                     if (document.querySelector('input[type=checkbox]').checked) {
-                        await new Promise(r => setTimeout(r, 10));
+                        await new Promise(r => setTimeout(r, 90/(n*n)));
+                        console.log("timeout" +90/(n*n))
                     }
 
 
