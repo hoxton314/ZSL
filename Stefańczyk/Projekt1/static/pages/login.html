@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel='stylesheet' href='../css/style.css' />
+</head>
+
+<body>
+    <header>
+        <a href="/">main</a>
+        <a href="register">register</a>
+        <a href="">login</a>
+        <a href="admin">admin</a>
+    </header>
+    <main>
+        <h1>Strona logowania</h1>
+        <div id="reg">
+
+
+            <form method='POST' action='/login'>
+                <label for='login'>Login: </label>
+                <input required type='text' id='login' name='login' />
+                <br />
+
+                <label for='password'>Hasło: </label>
+                <input required type='password' id='password' name='password' />
+                <br />
+
+                <input type='submit' value='Zaloguj się'>
+            </form>
+        </div>
+    </main>
+</body>
