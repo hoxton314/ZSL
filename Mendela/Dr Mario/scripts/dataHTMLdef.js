@@ -22,8 +22,13 @@ var definition = {
             left: false,
             right: false,
             speedUp: false,
+            speedUpMultiplier: 1,
             fallPillPos: 'h',
             falling: false,
+            coordsX1: 0,
+            coordsY1: 0,
+            coordsX2: 0,
+            coordsY2: 0,
         }
     },
     score: {

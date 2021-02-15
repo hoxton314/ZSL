@@ -6,15 +6,15 @@ var gravity = {
         gameinfo.data.gravity = false
         let pill1 = 'url("assets/bottle/left' + colors.slice(0, -1) + '.png")'
         let pill2 = 'url("assets/bottle/right' + colors.slice(1) + '.png")'
-        let coordsX1 = 3
-        let coordsY1 = -2
-        let coordsX2 = 4
-        let coordsY2 = -2
-        let below1 = document.getElementById((coordsY1 + 1) + '_' + (coordsX1))
-        let below2 = document.getElementById((coordsY2 + 1) + '_' + (coordsX2))
+        gameinfo.data.coordsX1 = 3
+        gameinfo.data.coordsY1 = -2
+        gameinfo.data.coordsX2 = 4
+        gameinfo.data.coordsY2 = -2
+        let below1 = document.getElementById((gameinfo.data.coordsY1 + 1) + '_' + (gameinfo.data.coordsX1))
+        let below2 = document.getElementById((gameinfo.data.coordsY2 + 1) + '_' + (gameinfo.data.coordsX2))
 
 
-        gravity.assignPill(coordsY1, coordsX1, coordsY2, coordsX2, colors)
+        gravity.assignPill(gameinfo.data.coordsY1, gameinfo.data.coordsX1, gameinfo.data.coordsY2, gameinfo.data.coordsX2, colors)
 
 
         if (below1.data.state == 'empty' && below2.data.state == 'empty') {
@@ -24,7 +24,7 @@ var gravity = {
         }
         //gameinfo.data.falling = false
         while (gameinfo.data.falling) {
-            if (coordsY1 > 14 || coordsY2 > 14) {
+            if (gameinfo.data.coordsY1 > 14 || gameinfo.data.coordsY2 > 14) {
                 var test1 = true
                 var test2 = true
             } else {
@@ -38,15 +38,16 @@ var gravity = {
                 gameinfo.data.throw = true
                 return
             }
-            gravity.removePill(coordsY1, coordsX1, coordsY2, coordsX2, colors)
-            coordsY1++
-            coordsY2++
+            gravity.removePill(gameinfo.data.coordsY1, gameinfo.data.coordsX1, gameinfo.data.coordsY2, gameinfo.data.coordsX2)
+            gameinfo.data.coordsY1++
+            gameinfo.data.coordsY2++
 
-            gravity.assignPill(coordsY1, coordsX1, coordsY2, coordsX2, colors)
+            gravity.assignPill(gameinfo.data.coordsY1, gameinfo.data.coordsX1, gameinfo.data.coordsY2, gameinfo.data.coordsX2, colors)
 
-            below1 = document.getElementById((coordsY1 + 1) + '_' + (coordsX1))
-            below2 = document.getElementById((coordsY2 + 1) + '_' + (coordsX2))
-            await tickrate.timer.sleep(7500 / gameinfo.data.animationSpeed)
+            below1 = document.getElementById((gameinfo.data.coordsY1 + 1) + '_' + (gameinfo.data.coordsX1))
+            below2 = document.getElementById((gameinfo.data.coordsY2 + 1) + '_' + (gameinfo.data.coordsX2))
+
+            await tickrate.timer.sleep((7500 / gameinfo.data.animationSpeed) / gameinfo.data.speedUpMultiplier)
         }
     },
     bottle: async function () {

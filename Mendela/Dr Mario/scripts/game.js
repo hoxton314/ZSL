@@ -1,6 +1,7 @@
 'use strict'
 async function game() {
     score.UpdateScore()
+    inputMove()
 
     let gameinfo = document.getElementById('pill-grid')
     gameinfo.data.throw = true
