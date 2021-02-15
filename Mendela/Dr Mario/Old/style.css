@@ -1,4 +1,14 @@
+
+@font-face {
+    font-family: 'Mario';
+    src: url('assets/mario.woff2') format('woff2'), 
+         url('assets/mario.woff') format('woff'),
+         url('assets/mario.ttf')  format('truetype');
+  }
+
+
 body{
+    font-family: 'Mario', Arial, sans-serif;
     font-weight:normal;
     font-style:normal;
     margin: 0;
@@ -30,7 +40,7 @@ background-color: black;
     top: 48px;
 }
 #hand{
-    background-image: url("assets/hand-throw2.png");
+    background-image: url("assets/hand-calm.png");
     z-index: 100;
     width: 216px;
     height: 216px;
@@ -49,7 +59,6 @@ background-color: black;
     text-align: center;
 }
 #top-counter {
-    display: flex;
     width: 168px;
     height: 24px;
     border: 1px red solid;
@@ -58,12 +67,12 @@ background-color: black;
     top:96px;
 }
 #score-counter {
-    display: flex;
     width: 168px;
     height: 24px;
+    border: 1px red solid;
     position: absolute;
     left:96px;
-    top:168px;
+    top:144px;
 }
 
 #game-info{
@@ -93,10 +102,40 @@ background-color: black;
     bottom: 0px;
     background-image: url("assets/virus-container.png");
 }
+.texts{
+    color:#73a3d7;
+    font-size: 24px;
+}
 
+#top-text{
+position: absolute;
+top:70px;
+left:30px;
+}
+#score-text{
+    position: absolute;
+    top:118px;
+    left: 30px;
+}
+#level-text{
+    position: absolute;
+    top:70px;
+    left:30px;
+}
+#speed-text{
+    position: absolute;
+    top:142px;
+    left:30px;
+}
+#virus-text{
+    position: absolute;
+    top:214px; 
+    left:30px;
+}
 #level-counter {
     width: 48px;
     height: 24px;
+    border: 1px red solid;
     position: absolute;
     left:168px;
     top:96px;
@@ -104,6 +143,7 @@ background-color: black;
 #speed-counter {
     width: 72px;
     height: 24px;
+    border: 1px red solid;
     position: absolute;
     left:168px;
     top:168px;
@@ -111,44 +151,26 @@ background-color: black;
 #virus-counter {
     width: 48px;
     height: 24px;
+    border: 1px red solid;
     position: absolute;
     left:168px;
     top:240px;
 }
 
 #pill-grid{
-height: 432px;
+height: 384px;
 width: 192px;
 border: 1px red solid;
 position: absolute;
 left:48px;
-top:48px;
+top:96px;
 }
-
-th {
-	width: 24px;
-	height: 24px;
-	background-color: transparent;
-	color: transparent;
-	font-size: 0;
-    user-select: none;
+.tile{
+    position:absolute;
+    padding: 0px;
     border: 1px red solid;
     box-sizing: border-box;
-}
-table {
-	position: absolute;
-	border-spacing: 0px;
-}
-#waitingPill1{
-    position: absolute;
-    left:24px;
-    top:24px;
-}
-#waitingPill2{
-    position: absolute;
-    left:48px;
-    top:24px;
-}
-.digits{
-    
+    height: 24px;
+    width: 24px;
+    user-select: none;
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Mario</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="scripts\colorrand.js"></script>
+    <script type="text/javascript" src="scripts\gravity.js"></script>
+    <script type="text/javascript" src="scripts\movepill.js"></script>
+    <script type="text/javascript" src="scripts\input.js"></script>
+    <script type="text/javascript" src="scripts\throw.js"></script>
+    <script type="text/javascript" src="scripts\virusspawner.js"></script>
+    <script type="text/javascript" src="scripts\virusspin.js"></script>
+    <script type="text/javascript" src="scripts\main.js"></script>
+</head>
+
+<body onload="game();">
+    <div id="game-container">
+        <div id="score-container">
+            <div class="texts" id="top-text">TOP</div>
+            <div class="texts" id="score-text">SCORE</div>
+            <div class="texts" id="top-counter"></div>
+            <div class="texts" id="score-counter"></div>
+        </div>
+        <div id="mario-container"></div>
+        <div id="mario">
+            <div id="hand"></div>
+        </div>
+        <div id="game-info">
+            <div class="texts" id="level-text">LEVEL</div>
+            <div class="texts" id="speed-text">SPEED</div>
+            <div class="texts" id="virus-text">VIRUS</div>
+            <div class="texts" id="level-counter"></div>
+            <div class="texts" id="speed-counter"></div>
+            <div class="texts" id="virus-counter"></div>
+        </div>
+
+        <div id="bottle">
+            <div id="pill-grid">
+
+            </div>
+        </div>
+        <div id="virus-container"></div>
+    </div>
+    <audio src="assets/soundtrack.ogg"></audio>
+
+</body>
+
+</html>

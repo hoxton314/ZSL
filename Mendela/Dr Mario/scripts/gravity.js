@@ -1,72 +1,77 @@
-async function pillgravity() {
-    while (true) {
-        await new Promise(resolve => setTimeout(resolve, 100));
-        if (document.getElementById("game-container").pillGravity) {
+'use strict'
+let gameinfo = document.getElementById('pill-grid')
 
-            document.getElementById("game-container").pillGravity = false
+var gravity = {
+    fallingPill: async function (colors) {
+        gameinfo.data.gravity = false
+        let pill1 = 'url("assets/bottle/left' + colors.slice(0, -1) + '.png")'
+        let pill2 = 'url("assets/bottle/right' + colors.slice(1) + '.png")'
+        let coordsX1 = 3
+        let coordsY1 = -2
+        let coordsX2 = 4
+        let coordsY2 = -2
+        let below1 = document.getElementById((coordsY1 + 1) + '_' + (coordsX1))
+        let below2 = document.getElementById((coordsY2 + 1) + '_' + (coordsX2))
 
-            let pillColors = document.getElementById("game-container").pilltoBottle
-            console.log(pillColors)
 
-            let pillImg = document.createElement("img");
-            document.getElementById("game-container").fallingPillPos = "h"
-            pillImg.setAttribute("src", "assets/pillanim/full-" + pillColors + "-" + document.getElementById("game-container").fallingPillPos + ".png");
-            pillImg.style.position = "absolute";
-            pillImg.style.left = "72px";
-            pillImg.style.top = "0px";
-            pillImg.id = "fallingPill";
-            document.getElementById("pill-grid").appendChild(pillImg);
-            pillImg = document.getElementById("fallingPill")
+        gravity.assignPill(coordsY1, coordsX1, coordsY2, coordsX2, colors)
 
-            document.getElementById("game-container").notCollided = true
-            let gravitylevelcounter = 1
-            while (document.getElementById("game-container").notCollided) {
-                try {
-                    var leftcolision = (document.getElementById(gravitylevelcounter + "-" + (parseInt(pillImg.style.left.slice(0, -2)) / 24)).gameinfo != "empty")
-                    var rightcolision = (document.getElementById(gravitylevelcounter + "-" + (1 + (parseInt(pillImg.style.left.slice(0, -2)) / 24))).gameinfo != "empty")
-                } catch (error) { }
-                let bottomcolision = gravitylevelcounter == 16
-                if (leftcolision || rightcolision || bottomcolision) {
-                    if (gravitylevelcounter == 1) {
-                        alert("koniec gry")
-                    }
-                    await new Promise(resolve => setTimeout(resolve, 250));
-                    pillImg.id = "fallenPill"
-                    document.getElementById("game-container").notCollided = false
-                    console.log("kolizja")
-                    if (document.getElementById("game-container").fallingPillPos == "h") {
-                        document.getElementById((gravitylevelcounter - 1) + "-" + (parseInt(pillImg.style.left.slice(0, -2)) / 24)).gameinfo = "pill" + pillColors.slice(0, 1)
-                        document.getElementById((gravitylevelcounter - 1) + "-" + (1 + (parseInt(pillImg.style.left.slice(0, -2)) / 24))).gameinfo = "pill" + pillColors.slice(1)
-                        pillImg.id = "fallenPill-" + pillImg.style.top.slice(0, -2) + "-" + pillImg.style.left.slice(0, -2)
-                    }
-                    if (document.getElementById("game-container").fallingPillPos == "v") {
-                        document.getElementById((gravitylevelcounter - 1) + "-" + ((parseInt(pillImg.style.left.slice(0, -2)) / 24) - 1)).gameinfo = "pill" + pillColors.slice(0, 1)
-                        document.getElementById((gravitylevelcounter - 1) + "-" + (parseInt(pillImg.style.left.slice(0, -2)) / 24)).gameinfo = "pill" + pillColors.slice(1)
-                        pillImg.id = "fallenPill-" + pillImg.style.top.slice(0, -2) + "-" + pillImg.style.left.slice(0, -2)
-                    }
-                    document.getElementById("game-container").throwReady = true
-                }
 
-                await new Promise(resolve => setTimeout(resolve, document.getElementById("game-container").fallingspeed));
-                //pillImg.style.left = pillImg.style.left.slice(0,-2);
-                if (document.getElementById("game-container").notCollided) {
-                    pillImg.style.top = (parseInt(pillImg.style.top.slice(0, -2)) + 24) + "px";
-                    gravitylevelcounter++
-                }
-
+        if (below1.data.state == 'empty' && below2.data.state == 'empty') {
+            gameinfo.data.falling = true
+        } else {
+            gameinfo.data.falling = false
+        }
+        //gameinfo.data.falling = false
+        while (gameinfo.data.falling) {
+            if (coordsY1 > 14 || coordsY2 > 14) {
+                var test1 = true
+                var test2 = true
+            } else {
+                var test1 = gameinfo.data.fallPillPos == 'h' && (below1.data.state != 'empty' || below2.data.state != 'empty')
+                var test2 = gameinfo.data.fallPillPos == 'v' && below2.data.state != 'empty'
             }
 
-            //document.getElementById("0-3").style.backgroundImage = "url('assets/bottle/left" + pillColors.charAt(0) + ".png')"
-            //document.getElementById("0-4").style.backgroundImage = "url('assets/bottle/right" + pillColors.charAt(1) + ".png')"
+
+            if (test1 || test2) {
+                gameinfo.data.falling = false
+                gameinfo.data.throw = true
+                return
+            }
+            gravity.removePill(coordsY1, coordsX1, coordsY2, coordsX2, colors)
+            coordsY1++
+            coordsY2++
+
+            gravity.assignPill(coordsY1, coordsX1, coordsY2, coordsX2, colors)
+
+            below1 = document.getElementById((coordsY1 + 1) + '_' + (coordsX1))
+            below2 = document.getElementById((coordsY2 + 1) + '_' + (coordsX2))
+            await tickrate.timer.sleep(7500 / gameinfo.data.animationSpeed)
+        }
+    },
+    bottle: async function () {
+
+    },
+    assignPill: function (y1, x1, y2, x2, colors) {
+
+        if (y1 == y2) {
+            document.getElementById(y1 + '_' + x1).style.backgroundImage = 'url("assets/bottle/left' + colors.slice(0, -1) + '.png")'
+            document.getElementById(y2 + '_' + x2).style.backgroundImage = 'url("assets/bottle/right' + colors.slice(1) + '.png")'
+            document.getElementById(y1 + '_' + x1).data.state = "pill" + colors.slice(0, -1)
+            document.getElementById(y2 + '_' + x2).data.state = "pill" + colors.slice(1)
+        }
+        if (x1 == x2) {
+            document.getElementById(y1 + '_' + x1).style.backgroundImage = 'url("assets/bottle/top' + colors.slice(0, -1) + '.png")'
+            document.getElementById(y2 + '_' + x2).style.backgroundImage = 'url("assets/bottle/bot' + colors.slice(1) + '.png")'
+            document.getElementById(y1 + '_' + x1).data.state = "pill" + colors.slice(0, -1)
+            document.getElementById(y2 + '_' + x2).data.state = "pill" + colors.slice(1)
         }
 
-
-        /*while (emptySpace) {
-            tickrate()
-            document.getElementById("game-container").pillGravity = false
-            let pillColors = pillgravity(document.getElementById("game-container").pilltoBottle)
-            document.getElementById("0-3").style.backgroundImage = "url('assets/bottle/left" + pillColors.charAt(0) + ".png')"
-            document.getElementById("0-4").style.backgroundImage = "url('assets/bottle/left" + pillColors.charAt(1) + + ".png')"
-        }*/
+    },
+    removePill: function (y1, x1, y2, x2) {
+        document.getElementById(y1 + '_' + x1).style.backgroundImage = ''
+        document.getElementById(y2 + '_' + x2).style.backgroundImage = ''
+        document.getElementById(y1 + '_' + x1).data.state = "empty"
+        document.getElementById(y2 + '_' + x2).data.state = "empty"
     }
 }

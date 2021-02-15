@@ -1,37 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html oncontextmenu='return false'>
 
 <head>
+    <title>Dr. Mario</title>
+    <link rel='stylesheet' href='style.css' />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Mario</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="scripts\colorrand.js"></script>
-    <script type="text/javascript" src="scripts\gravity.js"></script>
-    <script type="text/javascript" src="scripts\movepill.js"></script>
-    <script type="text/javascript" src="scripts\input.js"></script>
-    <script type="text/javascript" src="scripts\throw.js"></script>
-    <script type="text/javascript" src="scripts\virusspawner.js"></script>
-    <script type="text/javascript" src="scripts\virusspin.js"></script>
-    <script type="text/javascript" src="scripts\main.js"></script>
+
+    <script defer src='./scripts/virusrotate.js' type='text/javascript'></script>
+    <script defer src='./scripts/gravity.js' type='text/javascript'></script>
+    <script defer src='./scripts/match4.js' type='text/javascript'></script>
+    <script defer src='./scripts/throw.js' type='text/javascript'></script>
+    <script defer src='./scripts/score.js' type='text/javascript'></script>
+    <script defer src='./scripts/tablegen.js' type='text/javascript'></script>
+    <script defer src='./scripts/rands.js' type='text/javascript'></script>
+    <script defer src='./scripts/info.js' type='text/javascript'></script>
+    <script defer src='./scripts/input.js'></script>
+    <script defer src='./scripts/dataHTMLdef.js' type='text/javascript'></script>
+    <script defer src='./scripts/tickrate.js' type='text/javascript'></script>
+    <script defer src='./scripts/game.js' type='text/javascript'></script>
+    <script defer src='./scripts/main.js' type='text/javascript'></script>
 </head>
 
-<body onload="game();">
+<body onload="main();">
     <div id="game-container">
         <div id="score-container">
-            <div class="texts" id="top-text">TOP</div>
-            <div class="texts" id="score-text">SCORE</div>
-            <div class="texts" id="top-counter"></div>
-            <div class="texts" id="score-counter"></div>
+            <div class="digits" id="top-counter"></div>
+            <div class="digits" id="score-counter"></div>
         </div>
         <div id="mario-container"></div>
         <div id="mario">
+            <img id="waitingPill1">
+            <img id="waitingPill2">
             <div id="hand"></div>
         </div>
         <div id="game-info">
-            <div class="texts" id="level-text">LEVEL</div>
-            <div class="texts" id="speed-text">SPEED</div>
-            <div class="texts" id="virus-text">VIRUS</div>
             <div class="texts" id="level-counter"></div>
             <div class="texts" id="speed-counter"></div>
             <div class="texts" id="virus-counter"></div>
@@ -44,8 +47,7 @@
         </div>
         <div id="virus-container"></div>
     </div>
-    <audio src="assets/soundtrack.ogg"></audio>
-
+    <button id="animationspeed" onclick="definition.speed.change()">Game speed: normal</button>
 </body>
 
 </html>
