@@ -52,7 +52,7 @@ background-color: black;
     display: flex;
     width: 168px;
     height: 24px;
-    border: 1px red solid;
+    border: 0px red solid;
     position: absolute;
     left:96px;
     top:96px;
@@ -119,7 +119,7 @@ background-color: black;
 #pill-grid{
 height: 432px;
 width: 192px;
-border: 1px red solid;
+border: 0px red solid;
 position: absolute;
 left:48px;
 top:48px;
@@ -132,7 +132,7 @@ th {
 	color: transparent;
 	font-size: 0;
     user-select: none;
-    border: 1px red solid;
+    border: 0px red solid;
     box-sizing: border-box;
 }
 table {
@@ -149,6 +149,26 @@ table {
     left:48px;
     top:24px;
 }
-.digits{
-    
+
+
+#gameover{
+    z-index: 10000;
+    position: absolute;
+    left: 337px;
+}
+#winscreen{
+    z-index: 10000;
+    position: absolute;
+    left: 293px;
+}
+#gameover-mario{
+    z-index: 10000;
+    position: absolute;
+    left: 696px;
+    top: 48px
+}
+
+
+.virus-spin{
+    position: absolute;
 }

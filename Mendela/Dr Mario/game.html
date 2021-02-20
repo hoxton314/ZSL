@@ -45,9 +45,18 @@
 
             </div>
         </div>
-        <div id="virus-container"></div>
+        <div id="virus-container">
+            <img id="VirusY" class="virus-spin" src='assets/virus/yellow1.png' style="top:0px;left:130px;">
+            <img id="VirusB" class="virus-spin" src='assets/virus/blue1.png' style="top:px;left:45px;">
+            <img id="VirusR" class="virus-spin" src='assets/virus/red1.png' style="top:px;left:110px;">
+
+        </div>
     </div>
     <button id="animationspeed" onclick="definition.speed.change()">Game speed: normal</button>
+    <button onclick="let audio = document.querySelector('audio'); audio.volume = 0.2; audio.play();">
+        Music start
+    </button>
+    <audio src="assets/soundtrack.ogg"></audio>
 </body>
 
 </html>

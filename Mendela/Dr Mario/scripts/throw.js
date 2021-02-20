@@ -1,11 +1,15 @@
 'use strict'
 var pillThrow = {
     handAnim: async function () {
+
         let gameinfo = document.getElementById('pill-grid')
+        gameinfo.data.speedUpMultiplier = 1
+        gameinfo.data.allowMovement = true
         let colors = gameinfo.data.waitingPill
         let hand = document.getElementById("hand")
 
         hand.style.backgroundImage = 'url("assets/hand-throw1.png")'
+        gameinfo.data.fallPillPos = 'h'
         pillThrow.pillAnim(colors)
         await tickrate.timer.sleep(1000 / gameinfo.data.animationSpeed)
         hand.style.backgroundImage = 'url("assets/hand-calm.png")'

@@ -29,6 +29,10 @@ var definition = {
             coordsY1: 0,
             coordsX2: 0,
             coordsY2: 0,
+            allowMovement: false,
+            BlueLiving: 2,
+            RedLiving: 1,
+            YellowLiving: 1,
         }
     },
     score: {
