@@ -1,0 +1,176 @@
+
+@font-face {
+    font-family: 'Mario';
+    src: url('assets/mario.woff2') format('woff2'), 
+         url('assets/mario.woff') format('woff'),
+         url('assets/mario.ttf')  format('truetype');
+  }
+
+
+body{
+    font-family: 'Mario', Arial, sans-serif;
+    font-weight:normal;
+    font-style:normal;
+    margin: 0;
+    padding: 0;
+background-color: black;
+
+}
+#game-container{
+    background-image: url("assets/background.png");
+    width:960px;
+    height:576px;
+    position:relative;
+}
+#mario-container{
+    background-image: url("assets/mario-container.png");
+    width: 216px;
+    height: 216px;
+    position: absolute;
+    left: 696px;
+    top: 48px;
+} 
+#mario{
+    background-image: url("assets/mario.png");
+    z-index: 100;
+    width: 216px;
+    height: 216px;
+    position: absolute;
+    left: 696px;
+    top: 48px;
+}
+#hand{
+    background-image: url("assets/hand-calm.png");
+    z-index: 100;
+    width: 216px;
+    height: 216px;
+
+
+}
+#score-container{
+    width:312px;
+    height:240px; 
+    background-image: url("assets/score.png");
+    position: relative;
+    left: 24px;
+    top: 24px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+#top-counter {
+    width: 168px;
+    height: 24px;
+    border: 1px red solid;
+    position: absolute;
+    left:96px;
+    top:96px;
+}
+#score-counter {
+    width: 168px;
+    height: 24px;
+    border: 1px red solid;
+    position: absolute;
+    left:96px;
+    top:144px;
+}
+
+#game-info{
+    width:264px;
+    height:312px; 
+    background-image: url("assets/game-info.png");
+    position: absolute;
+    right: 24px;
+    bottom: 0px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+#bottle{
+    width:288px;
+    height:504px; 
+    position: absolute;
+    left: 360px;
+    bottom: 24px;
+    background-image: url("assets/bottle.png");
+}
+#virus-container{
+    width:312px;
+    height:288px; 
+    position: absolute;
+    left: 24px;
+    bottom: 0px;
+    background-image: url("assets/virus-container.png");
+}
+.texts{
+    color:#73a3d7;
+    font-size: 24px;
+}
+
+#top-text{
+position: absolute;
+top:70px;
+left:30px;
+}
+#score-text{
+    position: absolute;
+    top:118px;
+    left: 30px;
+}
+#level-text{
+    position: absolute;
+    top:70px;
+    left:30px;
+}
+#speed-text{
+    position: absolute;
+    top:142px;
+    left:30px;
+}
+#virus-text{
+    position: absolute;
+    top:214px; 
+    left:30px;
+}
+#level-counter {
+    width: 48px;
+    height: 24px;
+    border: 1px red solid;
+    position: absolute;
+    left:168px;
+    top:96px;
+}
+#speed-counter {
+    width: 72px;
+    height: 24px;
+    border: 1px red solid;
+    position: absolute;
+    left:168px;
+    top:168px;
+}
+#virus-counter {
+    width: 48px;
+    height: 24px;
+    border: 1px red solid;
+    position: absolute;
+    left:168px;
+    top:240px;
+}
+
+#pill-grid{
+height: 384px;
+width: 192px;
+border: 1px red solid;
+position: absolute;
+left:48px;
+top:96px;
+}
+.tile{
+    position:absolute;
+    padding: 0px;
+    border: 1px red solid;
+    box-sizing: border-box;
+    height: 24px;
+    width: 24px;
+    user-select: none;
+}

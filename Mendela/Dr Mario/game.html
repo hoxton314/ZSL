@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html oncontextmenu='return false'>
+
+<head>
+    <title>Dr. Mario</title>
+    <link rel='stylesheet' href='style.css' />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script defer src='./scripts/virusrotate.js' type='text/javascript'></script>
+    <script defer src='./scripts/gravity.js' type='text/javascript'></script>
+    <script defer src='./scripts/match4.js' type='text/javascript'></script>
+    <script defer src='./scripts/throw.js' type='text/javascript'></script>
+    <script defer src='./scripts/score.js' type='text/javascript'></script>
+    <script defer src='./scripts/tablegen.js' type='text/javascript'></script>
+    <script defer src='./scripts/rands.js' type='text/javascript'></script>
+    <script defer src='./scripts/info.js' type='text/javascript'></script>
+    <script defer src='./scripts/input.js'></script>
+    <script defer src='./scripts/dataHTMLdef.js' type='text/javascript'></script>
+    <script defer src='./scripts/tickrate.js' type='text/javascript'></script>
+    <script defer src='./scripts/game.js' type='text/javascript'></script>
+    <script defer src='./scripts/main.js' type='text/javascript'></script>
+</head>
+
+<body onload="main();">
+    <div id="game-container">
+        <div id="score-container">
+            <div class="digits" id="top-counter"></div>
+            <div class="digits" id="score-counter"></div>
+        </div>
+        <div id="mario-container"></div>
+        <div id="mario">
+            <img id="waitingPill1">
+            <img id="waitingPill2">
+            <div id="hand"></div>
+        </div>
+        <div id="game-info">
+            <div class="texts" id="level-counter"></div>
+            <div class="texts" id="speed-counter"></div>
+            <div class="texts" id="virus-counter"></div>
+        </div>
+
+        <div id="bottle">
+            <div id="pill-grid">
+
+            </div>
+        </div>
+        <div id="virus-container">
+            <img id="VirusY" class="virus-spin" src='assets/virus/yellow1.png' style="top:0px;left:130px;">
+            <img id="VirusB" class="virus-spin" src='assets/virus/blue1.png' style="top:px;left:45px;">
+            <img id="VirusR" class="virus-spin" src='assets/virus/red1.png' style="top:px;left:110px;">
+
+        </div>
+    </div>
+    <button id="animationspeed" onclick="definition.speed.change()">Game speed: normal</button>
+    <button onclick="let audio = document.querySelector('audio'); audio.volume = 0.2; audio.play();">
+        Music start
+    </button>
+    <audio src="assets/soundtrack.ogg"></audio>
+</body>
+
+</html>

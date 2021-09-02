@@ -1,0 +1,174 @@
+body{
+    font-weight:normal;
+    font-style:normal;
+    margin: 0;
+    padding: 0;
+background-color: black;
+
+}
+#game-container{
+    background-image: url("assets/background.png");
+    width:960px;
+    height:576px;
+    position:relative;
+}
+#mario-container{
+    background-image: url("assets/mario-container.png");
+    width: 216px;
+    height: 216px;
+    position: absolute;
+    left: 696px;
+    top: 48px;
+} 
+#mario{
+    background-image: url("assets/mario.png");
+    z-index: 100;
+    width: 216px;
+    height: 216px;
+    position: absolute;
+    left: 696px;
+    top: 48px;
+}
+#hand{
+    background-image: url("assets/hand-throw2.png");
+    z-index: 100;
+    width: 216px;
+    height: 216px;
+
+
+}
+#score-container{
+    width:312px;
+    height:240px; 
+    background-image: url("assets/score.png");
+    position: relative;
+    left: 24px;
+    top: 24px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+#top-counter {
+    display: flex;
+    width: 168px;
+    height: 24px;
+    border: 0px red solid;
+    position: absolute;
+    left:96px;
+    top:96px;
+}
+#score-counter {
+    display: flex;
+    width: 168px;
+    height: 24px;
+    position: absolute;
+    left:96px;
+    top:168px;
+}
+
+#game-info{
+    width:264px;
+    height:312px; 
+    background-image: url("assets/game-info.png");
+    position: absolute;
+    right: 24px;
+    bottom: 0px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+#bottle{
+    width:288px;
+    height:504px; 
+    position: absolute;
+    left: 360px;
+    bottom: 24px;
+    background-image: url("assets/bottle.png");
+}
+#virus-container{
+    width:312px;
+    height:288px; 
+    position: absolute;
+    left: 24px;
+    bottom: 0px;
+    background-image: url("assets/virus-container.png");
+}
+
+#level-counter {
+    width: 48px;
+    height: 24px;
+    position: absolute;
+    left:168px;
+    top:96px;
+}
+#speed-counter {
+    width: 72px;
+    height: 24px;
+    position: absolute;
+    left:168px;
+    top:168px;
+}
+#virus-counter {
+    width: 48px;
+    height: 24px;
+    position: absolute;
+    left:168px;
+    top:240px;
+}
+
+#pill-grid{
+height: 432px;
+width: 192px;
+border: 0px red solid;
+position: absolute;
+left:48px;
+top:48px;
+}
+
+th {
+	width: 24px;
+	height: 24px;
+	background-color: transparent;
+	color: transparent;
+	font-size: 0;
+    user-select: none;
+    border: 0px red solid;
+    box-sizing: border-box;
+}
+table {
+	position: absolute;
+	border-spacing: 0px;
+}
+#waitingPill1{
+    position: absolute;
+    left:24px;
+    top:24px;
+}
+#waitingPill2{
+    position: absolute;
+    left:48px;
+    top:24px;
+}
+
+
+#gameover{
+    z-index: 10000;
+    position: absolute;
+    left: 337px;
+}
+#winscreen{
+    z-index: 10000;
+    position: absolute;
+    left: 293px;
+}
+#gameover-mario{
+    z-index: 10000;
+    position: absolute;
+    left: 696px;
+    top: 48px
+}
+
+
+.virus-spin{
+    position: absolute;
+}
