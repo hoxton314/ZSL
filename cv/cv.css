@@ -1,0 +1,116 @@
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    color: #EDEDED;
+    background-color: #171717;
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a:link, a:visited, a:active, h1, h2 {
+    color: #DA0037;
+}
+
+a:hover {
+    color: #f72f62;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    width: calc(2480px/2);
+    height: calc(3508px/2);
+    background-color: #171717;
+    border: 3px solid black;
+}
+
+.shared-height{
+    height: 350px;
+}
+.pic {
+    width: 350px;
+}
+
+.left {
+    width: 80%;
+    background-color: #171717;
+    display: flex;
+    flex-direction: column;
+}
+
+.left div {
+    padding-left: 10px;
+}
+
+.right {
+    background-color: #444444;
+}
+
+.right>* {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.header {
+    background-color: #171717;
+    padding: 0px;
+}
+.name {
+    text-align: center;
+}
+
+.contact {
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.contact-links {
+    text-align: center;
+    line-height: 25px;
+    font-size: 20px;
+}
+
+.separator {
+    border-top: 3px solid #DA0037;
+    border-radius: 50px;
+    width: 100%;
+    padding: 0px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.about {
+    font-size: 18px;
+    width: 90%;
+}
+
+.skills-ul {
+    font-size: 18px;
+    width: 80%;
+}
+
+.languages-ul {
+    font-size: 18px;
+    width: 80%;
+}
+
+.experience>div {
+    width: 90%;
+    font-size: 18px;
+}
+
+.education *, .courses * {
+    width: 90%;
+}
+
+.experience>div, .education *, .courses * {
+    padding-left: 30px;
+}
+h4{
+    margin-top: -15px;
+    margin-left: 15px;
+}
