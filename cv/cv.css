@@ -133,8 +133,12 @@ h4 {
         margin: auto;
     }
     .mobileheader{
+        padding-left: 0px !important;
         background-color: #171717;
         display: block;
+    }
+    .name{
+        padding-left: 0px !important;
     }
     .switch{
         display:none;
@@ -147,5 +151,13 @@ h4 {
         background-color: #171717;
         display: flex;
         flex-direction: column;
+    }
+    
+    .contact {
+        padding-left: -10px;
+        margin-bottom: 10px;
+    }
+    .contact-links{
+        padding-left: 0px !important;
     }
 }
