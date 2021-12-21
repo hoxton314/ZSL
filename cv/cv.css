@@ -129,7 +129,8 @@ h4 {
         min-width: 100%;
         height: calc(3508px/2);
         background-color: #171717;
-        border: 3px solid black;
+        border: 0px solid black;
+        margin: auto;
     }
     .mobileheader{
         background-color: #171717;
@@ -141,5 +142,10 @@ h4 {
     .photo{
         margin: auto;
     }
-
+    .left {
+        width: 100%;
+        background-color: #171717;
+        display: flex;
+        flex-direction: column;
+    }
 }
