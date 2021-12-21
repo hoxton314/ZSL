@@ -27,9 +27,10 @@ a:hover {
     border: 3px solid black;
 }
 
-.shared-height{
+.shared-height {
     height: 350px;
 }
+
 .pic {
     width: 350px;
 }
@@ -59,6 +60,7 @@ a:hover {
     background-color: #171717;
     padding: 0px;
 }
+
 .name {
     text-align: center;
 }
@@ -110,7 +112,32 @@ a:hover {
 .experience>div, .education *, .courses * {
     padding-left: 30px;
 }
-h4{
+
+h4 {
     margin-top: -15px;
     margin-left: 15px;
+}
+
+@media only screen and (max-width: 1240px) {
+    .main {
+        display: flex;
+        flex-direction: column;
+        width: calc(2480px/2);
+        height: calc(3508px/2);
+        background-color: #171717;
+        border: 3px solid black;
+    }
+    .mobileheader{
+        position:absolute;
+        top:0px;
+        right: 10px;
+    }
+    .separator{
+        border-top: 3px solid #DA0037;
+        border-radius: 50px;
+        width: 1000%;
+        padding: 0px;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
 }
