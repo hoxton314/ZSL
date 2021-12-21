@@ -117,7 +117,9 @@ h4 {
     margin-top: -15px;
     margin-left: 15px;
 }
-
+.mobileheader{
+    display: none;
+}
 @media only screen and (max-width: 1240px) {
     .main {
         display: flex;
@@ -128,9 +130,14 @@ h4 {
         border: 3px solid black;
     }
     .mobileheader{
-        position:absolute;
-        top:0px;
-        right: 10px;
+        background-color: #171717;
+        display: block;
+    }
+    .switch{
+        display:none;
+    }
+    .photo{
+        margin: auto;
     }
     .separator{
         border-top: 3px solid #DA0037;
